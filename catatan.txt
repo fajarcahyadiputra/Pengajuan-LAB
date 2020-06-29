@@ -9,8 +9,8 @@ UNTUK ADMIN
 8.di table tambah guru kasih import excel supaya tidak cape masukinnya
 
 UNTUK GURU
-1.tambahkan di bawah welcme user, kata2 yang ada kayak di hal login
+1.tambahkan di bawah welcome user, kata2 yang ada kayak di hal login
 2.tambah daftar tanggal lab yang sudah di booking
-3.hapus fasilitas di daftar lab
+3.hapus fasilitas di daftar lab, di info jangan di hapus
 4.di bawah daftar lab ada daftar booking yang sudah di setujui
 5.tidak boleh booking jika waktu sudah ada yang booking
