@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2020 at 08:30 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.2
+-- Waktu pembuatan: 29 Jun 2020 pada 19.12
+-- Versi server: 10.1.38-MariaDB
+-- Versi PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,31 +25,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_guru`
+-- Struktur dari tabel `tb_guru`
 --
 
 CREATE TABLE `tb_guru` (
   `id` int(11) NOT NULL,
   `kode_guru` varchar(50) NOT NULL,
   `nama_guru` varchar(50) NOT NULL,
+  `username` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(100) NOT NULL,
   `apakah_aktif` enum('aktif','tidak') NOT NULL,
   `no_hp` varchar(50) NOT NULL,
+  `tanggal_daftar` datetime NOT NULL,
   `foto` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_guru`
+-- Dumping data untuk tabel `tb_guru`
 --
 
-INSERT INTO `tb_guru` (`id`, `kode_guru`, `nama_guru`, `email`, `password`, `apakah_aktif`, `no_hp`, `foto`) VALUES
-(9, 'GR0001', 'user', 'user@gmail.com', '12dea96fec20593566ab75692c9949596833adc9', 'aktif', '08952842648', '1bed72ca3924964154c5eaa554bb490d.png');
+INSERT INTO `tb_guru` (`id`, `kode_guru`, `nama_guru`, `username`, `email`, `password`, `apakah_aktif`, `no_hp`, `tanggal_daftar`, `foto`) VALUES
+(9, 'GR0001', 'user', 'user', 'user@gmail.com', '8cb2237d0679ca88db6464eac60da96345513964', 'aktif', '08952842648', '0000-00-00 00:00:00', '1bed72ca3924964154c5eaa554bb490d.png');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_lab`
+-- Struktur dari tabel `tb_lab`
 --
 
 CREATE TABLE `tb_lab` (
@@ -63,7 +65,7 @@ CREATE TABLE `tb_lab` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_lab`
+-- Dumping data untuk tabel `tb_lab`
 --
 
 INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`, `foto`, `keterangan`) VALUES
@@ -72,7 +74,7 @@ INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pengajuan`
+-- Struktur dari tabel `tb_pengajuan`
 --
 
 CREATE TABLE `tb_pengajuan` (
@@ -86,20 +88,22 @@ CREATE TABLE `tb_pengajuan` (
   `batas_pemakaian` datetime NOT NULL,
   `nohp_guru` varchar(20) NOT NULL,
   `foto_guru` varchar(50) NOT NULL,
-  `keterangan` text NOT NULL
+  `keterangan` text NOT NULL,
+  `approve` enum('setuju','tidak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pengajuan`
+-- Dumping data untuk tabel `tb_pengajuan`
 --
 
-INSERT INTO `tb_pengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `batas_pemakaian`, `nohp_guru`, `foto_guru`, `keterangan`) VALUES
-(51, 'PGN0001', 'LAB00001', 'GR0001', 'user', '2020-04-10 01:29:39', '2020-04-06 23:05:00', '2020-04-21 23:04:00', '08952842648', '1bed72ca3924964154c5eaa554bb490d.png', 'ok mantap');
+INSERT INTO `tb_pengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `batas_pemakaian`, `nohp_guru`, `foto_guru`, `keterangan`, `approve`) VALUES
+(74, 'PGN0001', 'LAB00001', 'GR0001', 'user', '2020-06-28 09:44:58', '2020-06-18 23:44:00', '2020-06-10 23:44:00', '08952842648', '1bed72ca3924964154c5eaa554bb490d.png', 'ok', 'setuju'),
+(75, 'PGN0002', 'LAB00001', 'GR0001', 'user', '2020-06-28 09:45:16', '2020-06-17 21:48:00', '2020-06-05 23:45:00', '08952842648', '1bed72ca3924964154c5eaa554bb490d.png', 'ok', 'setuju');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_riwayatpengajuan`
+-- Struktur dari tabel `tb_riwayatpengajuan`
 --
 
 CREATE TABLE `tb_riwayatpengajuan` (
@@ -113,20 +117,22 @@ CREATE TABLE `tb_riwayatpengajuan` (
   `batas_pemakaian` datetime NOT NULL,
   `nohp_guru` varchar(20) NOT NULL,
   `foto_guru` varchar(50) NOT NULL,
-  `keterangan` text NOT NULL
+  `keterangan` text NOT NULL,
+  `approve` enum('tidak','setuju') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_riwayatpengajuan`
+-- Dumping data untuk tabel `tb_riwayatpengajuan`
 --
 
-INSERT INTO `tb_riwayatpengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `batas_pemakaian`, `nohp_guru`, `foto_guru`, `keterangan`) VALUES
-(28, 'PGN0001', 'LAB00001', 'GR0001', 'user', '2020-04-10 01:29:39', '2020-04-06 23:05:00', '2020-04-21 23:04:00', '08952842648', '1bed72ca3924964154c5eaa554bb490d.png', 'ok mantap');
+INSERT INTO `tb_riwayatpengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `batas_pemakaian`, `nohp_guru`, `foto_guru`, `keterangan`, `approve`) VALUES
+(49, 'PGN0001', 'LAB00001', 'GR0001', 'user', '2020-06-28 09:44:58', '2020-06-18 23:44:00', '2020-06-10 23:44:00', '08952842648', '1bed72ca3924964154c5eaa554bb490d.png', 'ok', 'setuju'),
+(50, 'PGN0002', 'LAB00001', 'GR0001', 'user', '2020-06-28 09:45:16', '2020-06-17 21:48:00', '2020-06-05 23:45:00', '08952842648', '1bed72ca3924964154c5eaa554bb490d.png', 'ok', 'setuju');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_user`
+-- Struktur dari tabel `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -137,84 +143,80 @@ CREATE TABLE `tb_user` (
   `password` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
-  `level` enum('admin','guru') NOT NULL
+  `status_aktif` enum('aktif','tidak') NOT NULL,
+  `text_password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_user`
+-- Dumping data untuk tabel `tb_user`
 --
 
-INSERT INTO `tb_user` (`id`, `kode_user`, `nama`, `username`, `password`, `email`, `no_hp`, `level`) VALUES
-(1, 'A9898', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@gamil.com', '9849958', 'admin'),
-(2, 'user', 'user', 'user', '12dea96fec20593566ab75692c9949596833adc9', 'user@gmai.com', '276476', 'guru');
+INSERT INTO `tb_user` (`id`, `kode_user`, `nama`, `username`, `password`, `email`, `no_hp`, `status_aktif`, `text_password`) VALUES
+(1, 'US0001', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@gmail.com', '9849958', 'aktif', 'admin');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tb_guru`
+-- Indeks untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_lab`
+-- Indeks untuk tabel `tb_lab`
 --
 ALTER TABLE `tb_lab`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`kode_lab`) USING BTREE;
 
 --
--- Indexes for table `tb_pengajuan`
+-- Indeks untuk tabel `tb_pengajuan`
 --
 ALTER TABLE `tb_pengajuan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_riwayatpengajuan`
+-- Indeks untuk tabel `tb_riwayatpengajuan`
 --
 ALTER TABLE `tb_riwayatpengajuan`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kode_lab` (`kode_lab`),
+  ADD KEY `kode_guru` (`kode_guru`);
 
 --
--- Indexes for table `tb_user`
+-- Indeks untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tb_guru`
+-- AUTO_INCREMENT untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `tb_lab`
---
-ALTER TABLE `tb_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `tb_pengajuan`
+-- AUTO_INCREMENT untuk tabel `tb_pengajuan`
 --
 ALTER TABLE `tb_pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
--- AUTO_INCREMENT for table `tb_riwayatpengajuan`
+-- AUTO_INCREMENT untuk tabel `tb_riwayatpengajuan`
 --
 ALTER TABLE `tb_riwayatpengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- AUTO_INCREMENT for table `tb_user`
+-- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
