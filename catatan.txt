@@ -2,15 +2,15 @@ UNTUK ADMIN
 1. Revisi halaman login tambahkan logo (ok)
 2. tambah manajemen admin (ok)
 3. di tambahkan sistem aprove di pengajuan lab(ok)
-4. tambhakan piihan di riwayat pegajuan,dan jika pilih kode lab ini, akan tampil data pengejuan lab berdasakan kode lab
-5.tambahkan laporan pengajuan lab, berdasarkan tanggal 
-6.kasih nama judul di laporan dengan nama DAFTAR RESERVASI LABORATORIUM KOMPUTER SMPN NEGRI 1 WONOGIRI
-7.tambahka field password tidak ter enkkripsi di guru
-8.di table tambah guru kasih import excel supaya tidak cape masukinnya
+4. tambhakan piihan di riwayat pegajuan,dan jika pilih kode lab ini, akan tampil data pengejuan lab berdasakan kode lab (ok)
+5.tambahkan laporan pengajuan lab, berdasarkan tanggal (ok)
+6.kasih nama judul di laporan dengan nama DAFTAR RESERVASI LABORATORIUM KOMPUTER SMPN NEGRI 1 WONOGIRI (ok)
+7.tambahka field password tidak ter enkkripsi di guru (ok)
+8.di table tambah guru kasih import excel supaya tidak cape masukinnya (ok)
 
 UNTUK GURU
-1.tambahkan di bawah welcome user, kata2 yang ada kayak di hal login
-2.tambah daftar tanggal lab yang sudah di booking
-3.hapus fasilitas di daftar lab, di info jangan di hapus
-4.di bawah daftar lab ada daftar booking yang sudah di setujui
-5.tidak boleh booking jika waktu sudah ada yang booking
+1.tambahkan di bawah welcome user, kata2 yang ada kayak di hal login (ok)
+2.tambah daftar tanggal lab yang sudah di booking  (ok)
+3.hapus fasilitas di daftar lab, di info jangan di hapus (ok)
+4.di bawah daftar lab ada daftar booking yang sudah di setujui (ok)
+5.tidak boleh booking jika waktu sudah ada yang booking (ok)

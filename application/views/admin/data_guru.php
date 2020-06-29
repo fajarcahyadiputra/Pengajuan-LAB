@@ -26,9 +26,15 @@
 
 	<!-- Container Fluid-->
 	<div class="container-fluid" id="container-wrapper">
-		<a style="float: right" type="button" class="btn btn-outline-primary mb-4" data-toggle="modal" data-target="#modal-guru" ><i class="fas fa-user-plus"></i>Tambah Guru</a>
+		<div class="d-flex justify-content-between">
+			<h1 class="mb-4">Data Guru</h1>
+			<div class="d-flex">
+				
 
-		<h1 class="mb-4">Data Guru</h1>
+				<a type="button" style="height: 38px" class="btn btn-outline-primary mb-4 mr-2" data-toggle="modal" data-target="#modal-import" ><i class="fas fa-user-plus"></i>Import Dari Excel</a>
+				<a type="button" style="height: 38px" class="btn btn-outline-primary mb-4" data-toggle="modal" data-target="#modal-guru" ><i class="fas fa-user-plus"></i>Tambah Guru</a>
+			</div>
+		</div>
 		<div class="table-responsive">
 			<table class="table table-hover table-bordered table-striped responsive" id="datatable" style="width: 100%">
 				<thead class="text-center">
@@ -120,6 +126,30 @@
 <!-- end modal tambah data -->
 
 <!-- Modal tambah-->
+<div class="modal fade" id="modal-import" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Import Data Guru</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="<?= base_url('admin/import_data_guru') ?>" enctype="multipart/form-data" method="post">
+					<div class="form-group">
+						<label for="foto">Foto</label>
+						<input  required="" type="file" name="doc" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end modal tambah data -->
+
+<!-- Modal tambah-->
 <div class="modal fade" id="modal-edit-guru" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -130,7 +160,7 @@
 				</button>
 			</div>
 			<div class="penampung-edit-guru">
-
+						
 			</div>
 		</div>
 	</div>

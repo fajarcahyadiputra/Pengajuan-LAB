@@ -27,11 +27,11 @@ class Auth extends CI_Controller
 
 				if(empty($cek_admin_email)){
 					
-					$cek_user_username = $this->db->get_where('tb_guru', ['username' => $username, 'password' => $password])->row();
+					$cek_user_username = $this->db->get_where('tb_guru', ['username' => $username, 'password' => $this->input->post('password')])->row();
 
 					if(empty($cek_user_username)){
 						
-						$cek_user_email = $this->db->get_where('tb_guru', ['email' => $username, 'password' => $password])->row();
+						$cek_user_email = $this->db->get_where('tb_guru', ['email' => $username, 'password' => $this->input->post('password')])->row();
 
 						if(empty($cek_user_email)){
 							$this->session->set_flashdata('pesan','<div class="alert alert-danger text-center">Maaf Password/Username Salah</div>');

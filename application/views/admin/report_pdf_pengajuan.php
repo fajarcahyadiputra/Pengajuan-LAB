@@ -3,7 +3,9 @@
 	redirect('auth');
 }else{ ?>
 <div class="container">
-	<h4 style="text-align: center">Pengajuan WEB</h4>
+	<h4 style="text-align: center">Daftar Reservasi Laboratorium Komputer<br />SMPN NEGRI 1 WONOGIRI</h4>
+	
+	<br />
 	<pre>
 Kode Pengajuan : <?php echo $kode_pengajuan ?><br>
 Kode LAB       : <?php echo $kode_lab ?><br>

@@ -56,7 +56,8 @@
     <!-- jumbotron -->
     <div class="jumbotron text-center">
       <img src="<?php echo base_url('upload/foto_guru/').$this->session->userdata('foto') ?>" class="img-circle img-thumbnail">
-      <h1>Welcome, <?php echo $this->session->userdata('nama') ?></h1>
+			<h1>Welcome, <?php echo $this->session->userdata('nama') ?></h1>
+			<h4 style="font-weight: bold; color: white">SISTEM RESERVASI LAB KOMPUTER</h4>
     </div>
     <!-- akhir jumbotron -->
 
@@ -82,29 +83,135 @@
                 <div class="card-body">
                   <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
                     <table class="table">
-                     <tr>
-                      <td>Nama Lab<td>
-                        <td>:</td>
-                        <td><?php echo $lb->nama_lab ?></td>
-                      </tr>
-                      <tr>
-                        <td>Fasilitas<td>
-                          <td>:</td>
-                          <td><?php echo $lb->fasilitas ?></td>
-                        </tr>
-                      </table>
-                    </div>
-                    <div style="text-align: center">
-                      <button type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
-                      <button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+											<tr>
+												<td>Nama Lab<td>
+												<td>:</td>
+												<td><?php echo $lb->nama_lab ?></td>
+											</tr>
+
+											<?php foreach($cek_booking as $key => $cek): ?>
+											<?php if($cek->kode_lab == $lb->kode_lab): ?>
+											<tr>
+												<td>Telah di booking<td>
+												<td>:</td>
+												<td>Sudah</td>
+											</tr>
+											<tr>
+												<td>Sampai Tanggal<td>
+												<td>:</td>
+												<td><?= $cek->batas_pemakaian ?></td>
+											</tr>
+											<?php break; elseif($key == count($cek_booking)-1): ?>
+											<tr>
+												<td>Telah di booking<td>
+												<td>:</td>
+												<td>Belum</td>
+											</tr>
+											<tr>
+												<td>Sampai Tanggal<td>
+												<td>:</td>
+												<td>-</td>
+											</tr>
+											<?php endif ?>
+											<?php endforeach; ?>
+											<?php if(empty(count($cek_booking))): ?>
+											<tr>
+												<td>Telah di booking<td>
+												<td>:</td>
+												<td>Belum</td>
+											</tr>
+											<tr>
+												<td>Sampai Tanggal<td>
+												<td>:</td>
+												<td>-</td>
+											</tr>
+											<?php endif; ?>
+										</table>
+									</div>
+									<div style="text-align: center">
+										<button <?php foreach($cek_booking as $value): echo $value->kode_lab === $lb->kode_lab ? "disabled" : null; break; endforeach ?>  type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
+										<button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
+									</div>
+								</div>
+							</div>
+						</div>
             <?php endforeach ?>
           </div>
+				</div>
 
+				<div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <h2>Daftar LAB Yang Telah Aku Pesan</h2>
+            <hr>
+          </div>
         </div>
+
+        <!-- daftar lab -->
+        <div class="row">
+          <?php foreach($labku as $lb ) :  ?>
+            <div class="col-sm-4">
+              <div  class="thumbnail">
+                <img style="height: 300px" src="<?php echo base_url('upload/foto_lab/').$lb->foto ?>">
+                <div class="card-body">
+                  <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
+                    <table class="table">
+											<tr>
+												<td>Nama Lab<td>
+												<td>:</td>
+												<td><?php echo $lb->nama_lab ?></td>
+											</tr>
+
+											<?php foreach($cek_booking as $key => $cek): ?>
+											<?php if($cek->kode_lab == $lb->kode_lab): ?>
+											<tr>
+												<td>Telah di booking<td>
+												<td>:</td>
+												<td>Sudah</td>
+											</tr>
+											<tr>
+												<td>Sampai Tanggal<td>
+												<td>:</td>
+												<td><?= $cek->batas_pemakaian ?></td>
+											</tr>
+											<?php break; elseif($key == count($cek_booking)-1): ?>
+											<tr>
+												<td>Telah di booking<td>
+												<td>:</td>
+												<td>Belum</td>
+											</tr>
+											<tr>
+												<td>Sampai Tanggal<td>
+												<td>:</td>
+												<td>-</td>
+											</tr>
+											<?php endif ?>
+											<?php endforeach; ?>
+
+											<?php if(empty(count($cek_booking))): ?>
+											<tr>
+												<td>Telah di booking<td>
+												<td>:</td>
+												<td>Belum</td>
+											</tr>
+											<tr>
+												<td>Sampai Tanggal<td>
+												<td>:</td>
+												<td>-</td>
+											</tr>
+											<?php endif; ?>
+										</table>
+									</div>
+									<div style="text-align: center">
+										<button <?php foreach($cek_booking as $value): echo $value->kode_lab === $lb->kode_lab ? "disabled" : null; break; endforeach ?>  type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
+										<button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
+									</div>
+								</div>
+							</div>
+						</div>
+            <?php endforeach ?>
+          </div>
+				</div>
       </section>
       <br>
       <br>

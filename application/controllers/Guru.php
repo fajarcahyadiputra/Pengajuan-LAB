@@ -10,6 +10,13 @@ class Guru extends CI_Controller
 	public function index(){
 		$data['kode']     = $this->guru->tampil_kode_pengajuan();
 		$data['data_lab'] = $this->guru->tampil_data_lab();
+		$data['cek_booking'] = $this->db->get_where("tb_riwayatpengajuan", ['batas_pemakaian >' => date("Y-m-d H:i:s"), 'approve' => 'setuju'])->result();
+		$data['labku'] = $this->db->select('tb_lab.*')
+			->from('tb_lab')
+			->join('tb_riwayatpengajuan', 'tb_riwayatpengajuan.kode_lab = tb_lab.kode_lab', 'inner')
+			->where(['tb_riwayatpengajuan.batas_pemakaian >' => date("Y-m-d H:i:s"), 'tb_riwayatpengajuan.approve' => 'setuju', 'tb_riwayatpengajuan.kode_guru' => $this->session->userdata()['kode_guru']])
+			->get()->result();
+
 		$this->load->view('guru/dashboard',$data);
 	}
 	public function mengajukan_lab(){

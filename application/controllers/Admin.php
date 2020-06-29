@@ -26,6 +26,49 @@ class Admin extends CI_Controller
 		$this->load->view('admin/data_guru',$data);
 		$this->load->view('admin/templet/footer');
 	}
+	public function import_data_guru() {
+		include 'assets/PHPExcel/PHPExcel.php';
+		
+		$config['upload_path'] = realpath('assets/excel');
+		$config['allowed_types'] = 'xlsx|xls|csv';
+		$config['max_size'] = '10000';
+		$config['encrypt_name'] = true;
+
+		$this->load->library('upload', $config);
+
+		if(!$this->upload->do_upload('doc')){
+			echo "alert({$this->upload->display_errors()})";
+
+			return redirect("/admin/data_guru");
+		}else{
+			$excel = new PHPExcel_Reader_Excel2007();
+			$loadExcel = $excel->load('assets/excel/'.$this->upload->data('file_name'));
+			$sheet = $loadExcel->getActiveSheet()->toArray(null, true, true ,true);
+
+			$dataGuru = [];
+			foreach($sheet as $key => $data) {
+				if($key > 1) {
+					if(!empty($data['A']) && !empty($data['B']) && !empty($data['C']) &&
+					!empty($data['D']) && !empty($data['E']) && !empty($data['F'])) {
+						$dataGuru[] = [
+							'kode_guru' 		=> $data['A'],
+							'nama_guru' 		=> $data['B'],
+							'username' 			=> $data['C'],
+							'email'					=> $data['D'],
+							'password'			=> $data['E'],
+							'no_hp'					=> $data['F'],
+							'apakah_aktif'	=> 'aktif',
+							'tanggal_daftar'=> date("Y-m-d H:i:s"),
+						];
+					}
+				}
+			}
+
+			$this->db->insert_batch("tb_guru", $dataGuru);
+
+			return redirect("/admin/data_guru");
+		}
+	}
 	public function tambah_data_guru(){
 		$pesan 		= array();
 		$kode		= $this->input->post('kode_guru');
@@ -394,9 +437,12 @@ class Admin extends CI_Controller
 
 		
 	}
-	public function riwayat_pengajuan(){
-		$data['riwayat'] = $this->admin->tampil_riwayatpengajuan('tb_riwayatpengajuan');
+	public function riwayat_pengajuan($kode_lab = ""){
+		$data['riwayat'] = empty($kode_lab) ? $this->db->order_by("id", "DESC")->get("tb_riwayatpengajuan")->result() : $this->db->where(["kode_lab" => $kode_lab])->order_by("id", "desc")->get("tb_riwayatpengajuan")->result();
+		$data['kd_lab'] = $this->db->get("tb_lab")->result();
 		$data['title'] = 'Riwayat Pengajuan Lab';
+		$data['kode_lab'] = $kode_lab;
+
 		$this->load->view('admin/templet/header',$data);
 		$this->load->view('admin/templet/sidebar');
 		$this->load->view('admin/riwayat_pengajuan',$data);

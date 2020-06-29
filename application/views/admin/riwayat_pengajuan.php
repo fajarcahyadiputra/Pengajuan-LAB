@@ -4,7 +4,24 @@
 }else{
 	?>
 	<div class="container-fluid">
-		<h1 class="mb-4">Data Riwayat Pengajuan LAB</h1>
+		<div class="d-flex justify-content-between">
+			<h1 class="mb-4">Data Riwayat Pengajuan LAB</h1>
+			
+			<div>
+				Kode Lab: 
+				<select style="height: 38px">
+					<option <?= empty($kode_lab) ? "selected" : null ?> onclick="window.location.href=`<?= base_url('/admin/riwayat_pengajuan/') ?>`">
+						Semua
+					</option>
+					
+					<?php foreach($kd_lab as $pn): ?>
+					<option <?= $kode_lab == $pn->kode_lab ? "selected" : null ?> onclick="window.location.href=`<?= base_url('/admin/riwayat_pengajuan/'.$pn->kode_lab) ?>`">
+						<?= $pn->kode_lab ?>	
+					</option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+		</div>
 		<div class="table-responsive">
 		<table class="table table-hover table-bordered table-striped" id="datatable" style="width:100%">
 			<thead>
