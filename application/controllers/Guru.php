@@ -14,7 +14,7 @@ class Guru extends CI_Controller
 		$data['labku'] = $this->db->select('tb_lab.*')
 			->from('tb_lab')
 			->join('tb_riwayatpengajuan', 'tb_riwayatpengajuan.kode_lab = tb_lab.kode_lab', 'inner')
-			->where(['tb_riwayatpengajuan.batas_pemakaian >' => date("Y-m-d H:i:s"), 'tb_riwayatpengajuan.approve' => 'setuju', 'tb_riwayatpengajuan.kode_guru' => $this->session->userdata()['kode_guru']])
+			->where(['tb_riwayatpengajuan.batas_pemakaian >' => date("Y-m-d H:i:s"), 'tb_riwayatpengajuan.approve' => 'setuju'])
 			->get()->result();
 
 		$data['kelas'] = $this->db->get('tb_kelas')->result();

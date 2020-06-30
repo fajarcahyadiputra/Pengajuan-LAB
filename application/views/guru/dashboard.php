@@ -104,7 +104,7 @@
 				<div class="container">
         <div class="row">
           <div class="col-sm-12 text-center">
-            <h2>Daftar LAB Yang Telah Aku Pesan</h2>
+            <h2>Daftar LAB Yang Telah di pesan</h2>
             <hr>
           </div>
         </div>
@@ -127,9 +127,9 @@
 											<?php foreach($cek_booking as $key => $cek): ?>
 											<?php if($cek->kode_lab == $lb->kode_lab): ?>
 											<tr>
-												<td>Telah di booking<td>
+												<td>Telah di pesan<td>
 												<td>:</td>
-												<td>Sudah</td>
+												<td>Ya</td>
 											</tr>
 											<tr>
 												<td>Sampai Tanggal<td>
@@ -148,9 +148,9 @@
 											</tr>
 											<?php break; elseif($key == count($cek_booking)-1): ?>
 											<tr>
-												<td>Telah di booking<td>
+												<td>Telah di Pesan<td>
 												<td>:</td>
-												<td>Belum</td>
+												<td>Tidak</td>
 											</tr>
 											<tr>
 												<td>Sampai Tanggal<td>
@@ -175,7 +175,6 @@
 										</table>
 									</div>
 									<div style="text-align: center">
-										<button <?php foreach($cek_booking as $value): echo $value->kode_lab === $lb->kode_lab ? "disabled" : null; break; endforeach ?>  type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
 										<button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
 									</div>
 								</div>

@@ -644,15 +644,16 @@ class Admin extends CI_Controller
 	private function riwayat_pengajuan_sort_post() {
 		if($_SERVER['REQUEST_METHOD'] == "POST") {
 			$data['riwayat'] = $this->db
-															->where(["tanggal_pengajuan >= " => $this->input->post('awal')])
-															->where(["tanggal_pengajuan <= " => $this->input->post('akhir')])
-															->order_by("id", "desc")->get("tb_riwayatpengajuan")->result();
+											->where(["tanggal_pengajuan >= " => $this->input->post('awal')])
+											->where(["tanggal_pengajuan <= " => $this->input->post('akhir')])
+											->where(["approve" => "setuju"])
+											->order_by("id", "desc")->get("tb_riwayatpengajuan")->result();
 			
-			$this->load->view('admin/riwayat_pengajuan_sort_show', $data);
-		} else {
-			$this->load->view('admin/riwayat_pengajuan_sort');
-
+			$this->load->library('pdf');
+			$this->pdf->filename = 'laporan_riwayat.pdf';
+			$this->pdf->load_view('admin/riwayat_pengajuan_sort_show', $data);
 		}
+		$this->load->view('admin/riwayat_pengajuan_sort');
 	}
 }
 
