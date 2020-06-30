@@ -26,6 +26,8 @@
           <h6 class="collapse-header">Data Master</h6>
           <a class="collapse-item" href="<?php echo base_url('admin/data_lab') ?>">Master LAB</a>
           <a class="collapse-item" href="<?php echo base_url('admin/data_guru') ?>">Master Guru</a>
+          <a class="collapse-item" href="<?php echo base_url('admin/data_pelajaran') ?>">Master Pelajaran</a>
+          <a class="collapse-item" href="<?php echo base_url('admin/data_kelas') ?>">Master Kelas</a>
           <a class="collapse-item" href="<?php echo base_url('admin/data_admin') ?>">Master Admin</a>
           
         </div>

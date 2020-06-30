@@ -174,6 +174,16 @@
 												<td>:</td>
 												<td><?= $cek->batas_pemakaian ?></td>
 											</tr>
+											<tr>
+												<td>Nama Kelas<td>
+												<td>:</td>
+												<td><?= $cek->kelas ?></td>
+											</tr>
+											<tr>
+												<td>Mata Pelajaran<td>
+												<td>:</td>
+												<td><?= $cek->mata_pelajaran ?></td>
+											</tr>
 											<?php break; elseif($key == count($cek_booking)-1): ?>
 											<tr>
 												<td>Telah di booking<td>
@@ -251,27 +261,8 @@
                 <div class="form-group">
                   <label for="pesan">Pesan</label>
                   <textarea class="form-control" rows="10" placeholder="masukkan pesan"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Kirim Pesan</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section> -->
-      <!-- akhir contact -->
-
-
-      <!-- footer -->
-      <footer >
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-sm-12">
-              <p style="font-size: 20px">&copy; copyright 2020 | built with <i class="glyphicon glyphicon-heart"></i> by. <a href="http://instagram.com/fajarcahyadii_">Fajar</a>.</p>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <!-- akhir footer -->
+                </div>adeadada
+adeadada
 
 
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -305,7 +296,23 @@
               <div class="form-group">
               <label for="kode_guru">Kode Guru</label>
               <input required="" type="text" readonly name="kode_guru" class="form-control" id="kode_guru" value="<?php echo $this->session->userdata('kode_guru') ?>">
-              </div>
+							</div>
+							<div class="form-group">
+              <label for="sampai_jam">Nama Kelas</label>
+							<select name="nama_kelas"  class="form-control">
+							<?php foreach($kelas as $name_kelas): ?>
+							<option value="<?= $name_kelas->nama_kelas ?>"><?= $name_kelas->nama_kelas ?></option>
+							<?php endforeach; ?>
+							</select>
+							</div>
+							<div class="form-group">
+              <label for="sampai_jam">Mata Pelajaran</label>
+							<select name="mata_pelajaran"  class="form-control">
+							<?php foreach($pelajaran as $mata_pelajaran): ?>
+							<option value="<?= $mata_pelajaran->mata_pelajaran ?>"><?= $mata_pelajaran->mata_pelajaran ?></option>
+							<?php endforeach; ?>
+							</select>
+							</div>
               <div class="form-group">
               <label for="nama_guru">Nama</label>
               <input required="" type="text" name="nama_guru" class="form-control" id="nama_guru" value="<?php echo $this->session->userdata('nama') ?>">
@@ -320,16 +327,12 @@
               </div>
               <div class="form-group">
               <label for="jam_pemakaian">Jam Pemakaian</label>
-              <input required="" type="time" name="jam_pemakaian" class="form-control" id="jam_pemakaian" >
-              </div>
-              <div class="form-group">
-              <label for="sampai_tanggal">Sampai Tanggal</label>
-              <input required="" type="date" name="sampai_tanggal" class="form-control" id="sampai_tanggal" >
+              <input required="" type="time" name="jam_pemakaian" min="09:00" max="21:00" class="form-control" id="jam_pemakaian" >
               </div>
               <div class="form-group">
               <label for="sampai_jam">Sampai Jam</label>
-              <input required="" type="time" name="sampai_jam" class="form-control" id="sampai_jam" >
-              </div>
+              <input required="" type="time" name="sampai_jam" min="09:00" max="21:00" class="form-control" id="sampai_jam" >
+							</div>
               <div class="form-group">
               <label for="keterangan">Keterangan</label>
               <textarea name="keterangan" rows="3" class="form-control" id="keterangan"></textarea>
@@ -342,7 +345,7 @@
               <input type="text" hidden="" value="<?php echo $this->session->userdata('foto') ?>" name="foto_lama" >
               </div>
               <div class="bawah-request">
-              <button style="width:168px"  type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+              <button style="width:168px" type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
               <button style="width:168px"  class="btn btn-danger" type="reset">Reset</button>
               <button style="width:168px"  id="tombol-megajukan"  type="submit" class="btn btn-primary">Mengajukan</button>
               </div>

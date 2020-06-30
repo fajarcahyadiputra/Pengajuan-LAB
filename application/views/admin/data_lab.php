@@ -40,8 +40,8 @@
 						<td><img width="100" height="100" src="../upload/foto_lab/<?php echo $lb->foto ?>" alt=""></td>
 						<td>
 							<div class="aksi">
-								<button type="button" data-id="<?php echo $lb->id ?>" id="tombol-editlab" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-								<button type="button" data-foto="<?php echo $lb->foto ?>" data-id="<?php echo $lb->id ?>" id="tombol-hapuslab" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+								<button type="button" data-id="<?php echo $lb->kode_lab ?>" id="tombol-editlab" class="btn btn-primary"><i class="fa fa-edit"></i></button>
+								<button type="button" data-id="<?php echo $lb->kode_lab ?>" id="tombol-hapuslab" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 							</div>
 						</td>
 					</tr>

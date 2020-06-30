@@ -17,6 +17,9 @@ class Guru extends CI_Controller
 			->where(['tb_riwayatpengajuan.batas_pemakaian >' => date("Y-m-d H:i:s"), 'tb_riwayatpengajuan.approve' => 'setuju', 'tb_riwayatpengajuan.kode_guru' => $this->session->userdata()['kode_guru']])
 			->get()->result();
 
+		$data['kelas'] = $this->db->get('tb_kelas')->result();
+		$data['pelajaran'] = $this->db->get('tb_pelajaran')->result();
+
 		$this->load->view('guru/dashboard',$data);
 	}
 	public function mengajukan_lab(){
@@ -30,9 +33,8 @@ class Guru extends CI_Controller
 		$tp 			  = htmlspecialchars($this->input->post('tanggal_pemakaian'));
 		$jp 			  = htmlspecialchars($this->input->post('jam_pemakaian'));
 		$jtp 			  = $tp . ' ' . $jp;
-		$st 			  = $this->input->post('sampai_tanggal');
 		$sj 			  = $this->input->post('sampai_jam');
-		$bjp 			  = $st . ' ' . $sj;
+		$bjp 			  = $tp . ' ' . $sj;
 		$foto_lama 		  = $this->input->post('foto_lama');
 
 		$config['upload_path'] 		= './upload/foto_guru';
@@ -59,6 +61,8 @@ class Guru extends CI_Controller
 			'nohp_guru'		 => $nohp_guru,
 			'keterangan'     => $keterangan,
 			'foto_guru'		=> $foto,
+			'kelas' 	=> $this->input->post("nama_kelas"),
+			'mata_pelajaran' 	=> $this->input->post("mata_pelajaran"),
 			'approve'		=> 'tidak'
 		];
 

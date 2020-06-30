@@ -248,18 +248,13 @@ class Admin extends CI_Controller
 
 		echo json_encode($pesan);
 	}
-	public function hapus_data_lab($id, $foto){
-		$where = ['id' => $id];
+	public function hapus_data_lab($id){
+		$where = ['kode_lab' => $id];
 		$pesan = array();
 
-		$delete = $this->admin->hapus_data_lab('tb_lab', $where);
+		$this->admin->hapus_data_lab('tb_lab', $where);
 
-		if($delete){
-			$pesan['delete'] = true;
-			unlink(FCPATH . 'upload/foto_lab/' . $foto);
-		}else{
-			$pesan['delete'] = false;
-		}
+		$pesan['delete'] = true;
 
 		echo json_encode($pesan);
 	}
@@ -462,6 +457,8 @@ class Admin extends CI_Controller
 			$result['tanggal_pemakaian'] = $isi->tanggal_pemakaian;
 			$result['batas_pemakaian'] = $isi->batas_pemakaian;
 			$result['nohp_guru'] = $isi->nohp_guru;
+			$result['kelas'] = $isi->kelas;
+			$result['mata_pelajaran'] = $isi->mata_pelajaran;
 			$result['foto_guru'] = $isi->foto_guru;
 			$result['keterangan'] = $isi->keterangan;
 		}
@@ -584,6 +581,56 @@ class Admin extends CI_Controller
 		}
 
 		echo json_encode($pesan);
+	}
+
+	public function data_pelajaran(){
+		$data['pelajaran'] = $this->db->get('tb_pelajaran')->result();
+		$this->load->view('admin/templet/header');
+		$this->load->view('admin/templet/sidebar');
+		$this->load->view('admin/data_pelajaran',$data);
+		$this->load->view('admin/templet/footer');
+	}
+
+	public function tambah_pelajaran() {
+		$data = [
+			"mata_pelajaran" => $this->input->post('mata_pelajaran'),
+			'jam_mulai' => $this->input->post('jam_mulai'),
+			'jam_berakhir' => $this->input->post('jam_berakhir'),
+		];
+
+		$this->db->insert("tb_pelajaran", $data);
+
+		return redirect(base_url('admin/data_pelajaran'));
+	}
+
+	public function hapus_pelajaran($id) {
+		$this->db->where('id', $id)->delete('tb_pelajaran');
+
+		return redirect(base_url('admin/data_pelajaran'));
+	}
+
+	public function data_kelas(){
+		$data['kelas'] = $this->db->get('tb_kelas')->result();
+		$this->load->view('admin/templet/header');
+		$this->load->view('admin/templet/sidebar');
+		$this->load->view('admin/data_kelas',$data);
+		$this->load->view('admin/templet/footer');
+	}
+
+	public function tambah_kelas() {
+		$data = [
+			"nama_kelas" => $this->input->post('nama_kelas')
+		];
+
+		$this->db->insert("tb_kelas", $data);
+
+		return redirect(base_url('admin/data_kelas'));
+	}
+
+	public function hapus_kelas($id) {
+		$this->db->where('id', $id)->delete('tb_kelas');
+
+		return redirect(base_url('admin/data_kelas'));
 	}
 }
 

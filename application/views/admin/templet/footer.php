@@ -482,6 +482,16 @@
             <td>:</td>
             <td>${hasil.batas_pemakaian}</td>
             </tr>
+						<tr>
+            <th>Nama Kelas</th>
+            <td>:</td>
+            <td>${hasil.kelas}</td>
+						</tr>
+						<tr>
+            <th>Mata Pelajaran</th>
+            <td>:</td>
+            <td>${hasil.mata_pelajaran}</td>
+            </tr>
             <tr>
             <th>NO Handphone</th>
             <td>:</td>

@@ -40,6 +40,14 @@
 				<input type="text" readonly="" class="form-control" value="<?php echo $pg->batas_pemakaian ?>">
 			</div>
 			<div class="form-group">
+				<label>Nama Kelas</label>
+				<input type="text" readonly="" class="form-control" value="<?php echo $pg->kelas ?>">
+			</div>
+			<div class="form-group">
+				<label>Mata Pelajaran</label>
+				<input type="text" readonly="" class="form-control" value="<?php echo $pg->mata_pelajaran ?>">
+			</div>
+			<div class="form-group">
 				<label>Nomer HP</label>
 				<input type="text" readonly="" class="form-control" value="<?php echo $pg->nohp_guru ?>">
 			</div>
