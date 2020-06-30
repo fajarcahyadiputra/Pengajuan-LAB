@@ -139,7 +139,7 @@
 				<form action="<?= base_url('admin/import_data_guru') ?>" enctype="multipart/form-data" method="post">
 					<div class="form-group">
 						<label for="foto">Dokumen Excel</label>
-						<input  required="" type="file" name="doc" class="form-control">
+						<input required="" type="file" name="doc" class="form-control">
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>

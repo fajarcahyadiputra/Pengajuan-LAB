@@ -30,7 +30,7 @@ class Admin extends CI_Controller
 		error_reporting(0);
 		include 'assets/PHPExcel/PHPExcel.php';
 		
-		$config['upload_path'] = realpath('assets/excel');
+		$config['upload_path'] = 'assets/excel';
 		$config['allowed_types'] = 'xlsx|xls|csv';
 		$config['max_size'] = '10000';
 		$config['encrypt_name'] = true;
@@ -632,6 +632,15 @@ class Admin extends CI_Controller
 		$this->db->where('id', $id)->delete('tb_kelas');
 
 		return redirect(base_url('admin/data_kelas'));
+	}
+
+	public function riwayat_pengajuan_sort() {
+		$data['title'] = 'Riwayat Pengajuan Lab';
+
+		$this->load->view('admin/templet/header',$data);
+		$this->load->view('admin/templet/sidebar');
+		$this->load->view('admin/riwayat_pengajuan_sort',$data);
+		$this->load->view('admin/templet/footer');
 	}
 }
 
