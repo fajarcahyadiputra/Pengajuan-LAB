@@ -42,7 +42,8 @@
 						<th>No</th>
 						<th>Kode Guru</th>
 						<th>Nama Guru</th>
-						<th>Email</th>
+						<th>username</th>
+						<th>Password</th>
 						<th>Apakah Aktif</th>
 						<th>No hp</th>
 						<th>Foto</th>
@@ -55,7 +56,8 @@
 						<td><?php echo $no++ ?></td>
 						<td><?php echo $gr->kode_guru ?></td>
 						<td><?php echo $gr->nama_guru ?></td>
-						<td><?php echo $gr->email ?></td>
+						<td><?php echo $gr->username ?></td>
+						<td><?php echo $gr->password ?></td>
 						<td ><p style="background-color: lightblue; width:50px;text-align: center;border-radius: 30px"><?php echo $gr->apakah_aktif ?></p></td>
 						<td><?php echo $gr->no_hp ?></td>
 						<td><img width="100" height="100" src="<?php echo base_url('upload/foto_guru/').$gr->foto ?>" alt=""></td>

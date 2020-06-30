@@ -17,7 +17,7 @@
 				<input required="" type="date" name="akhir" class="form-control"> 
 			</div>
 			<div class="col-12">
-				<button type="submit" class="btn btn-primary" id="tambah-lab">Tambahkan</button>
+				<button type="submit" class="btn btn-primary" id="tambah-lab">Cetak</button>
 				<button type="reset" class="btn btn-danger tombol-reset ml-2">Reset</button>
 			</div>
 		</form>

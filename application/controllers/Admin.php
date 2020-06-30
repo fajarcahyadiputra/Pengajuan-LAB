@@ -21,7 +21,8 @@ class Admin extends CI_Controller
 	public function data_guru(){
 		$data['kode'] = $this->admin->kode_guru();
 		$data['guru'] = $this->admin->tampil_data_guru('tb_guru');
-		$this->load->view('admin/templet/header');
+		$data['title'] = 'Data Guru';
+		$this->load->view('admin/templet/header',$data);
 		$this->load->view('admin/templet/sidebar');
 		$this->load->view('admin/data_guru',$data);
 		$this->load->view('admin/templet/footer');
@@ -173,7 +174,9 @@ class Admin extends CI_Controller
 			$foto = $foto_lama;
 		}else{
 			$foto = $this->upload->data('file_name');
-			unlink(FCPATH . 'upload/foto_guru/' . $foto_lama);
+			if(!$foto_lama === 'default.jpg'){
+				unlink(FCPATH . 'upload/foto_guru/' . $foto_lama);
+			}
 		}
 
 		$where = ['id' => $id];
@@ -202,7 +205,8 @@ class Admin extends CI_Controller
 	public function data_lab(){
 		$data['lab'] = $this->admin->tampil_data_lab('tb_lab');
 		$data['kode'] = $this->admin->kode_lab();
-		$this->load->view('admin/templet/header');
+		$data['title'] = 'Data Lab';
+		$this->load->view('admin/templet/header',$data);
 		$this->load->view('admin/templet/sidebar');
 		$this->load->view('admin/data_lab',$data);
 		$this->load->view('admin/templet/footer');
@@ -583,7 +587,8 @@ class Admin extends CI_Controller
 
 	public function data_pelajaran(){
 		$data['pelajaran'] = $this->db->get('tb_pelajaran')->result();
-		$this->load->view('admin/templet/header');
+		$data['title'] = 'Data pelajaran';
+		$this->load->view('admin/templet/header',$data);
 		$this->load->view('admin/templet/sidebar');
 		$this->load->view('admin/data_pelajaran',$data);
 		$this->load->view('admin/templet/footer');
@@ -609,7 +614,8 @@ class Admin extends CI_Controller
 
 	public function data_kelas(){
 		$data['kelas'] = $this->db->get('tb_kelas')->result();
-		$this->load->view('admin/templet/header');
+		$data['title'] = 'Data Kelas';
+		$this->load->view('admin/templet/header',$data);
 		$this->load->view('admin/templet/sidebar');
 		$this->load->view('admin/data_kelas',$data);
 		$this->load->view('admin/templet/footer');

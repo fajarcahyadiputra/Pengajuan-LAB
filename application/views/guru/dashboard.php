@@ -14,10 +14,11 @@
     <title>My Porfolio</title>
 
     <!-- Bootstrap -->
+      <link href="<?php echo base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/') ?>css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/style.css">
     <link href="<?php echo base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/datatable/css/jquery.dataTables.css"/>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,208 +57,135 @@
     <!-- jumbotron -->
     <div class="jumbotron text-center">
       <img src="<?php echo base_url('upload/foto_guru/').$this->session->userdata('foto') ?>" class="img-circle img-thumbnail">
-			<h1>Welcome, <?php echo $this->session->userdata('nama') ?></h1>
-			<h4 style="font-weight: bold; color: white">SISTEM RESERVASI LAB KOMPUTER</h4>
+      <h1>Welcome, <?php echo $this->session->userdata('nama') ?></h1>
+      <h4 style="font-weight: bold; color: white">SISTEM RESERVASI LAB KOMPUTER</h4>
     </div>
     <!-- akhir jumbotron -->
 
     <!-- portfolio -->
-    <section class="portfolio" id="portfolio">
-			<div class="container">
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <h2>Daftar Jam/Lab Yang sudah di booking</h2>
-            <hr>
-          </div>
+     <div class="container">
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <h2>Daftar Jam/Lab Yang sudah di booking</h2>
+          <hr>
         </div>
+      </div>
 
-        <!-- daftar lab -->
-        <div class="row">
-          <?php foreach($cek_booking as $lb ) :  ?>
-            <div class="col-sm-2">
-							<div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
-								<table class="table">
-									<tr>
-										<td class="text-center"><?php echo $lb->tanggal_pemakaian ?></td>
-									</tr>	
-								</table>
-							</div>
-						</div>
-					<?php endforeach ?>
-				</div>
-			</div>
-						
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <h2>Daftar LAB Yang Tersedia</h2>
-            <hr>
-          </div>
-        </div>
-
-        <!-- daftar lab -->
-        <div class="row">
-          <?php foreach($data_lab as $lb ) :  ?>
-            <div class="col-sm-4">
-              <div  class="thumbnail">
-                <img style="height: 300px" src="<?php echo base_url('upload/foto_lab/').$lb->foto ?>">
-                <div class="card-body">
-                  <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
-                    <table class="table">
-											<tr>
-												<td>Nama Lab<td>
-												<td>:</td>
-												<td><?php echo $lb->nama_lab ?></td>
-											</tr>	
-										</table>
-									</div>
-									<div style="text-align: center">
-										<button <?php foreach($cek_booking as $value): echo $value->kode_lab === $lb->kode_lab ? "disabled" : null; break; endforeach ?>  type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
-										<button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
-									</div>
-								</div>
-							</div>
-						</div>
-            <?php endforeach ?>
-          </div>
-				</div>
-
-				<div class="container">
-        <div class="row">
-          <div class="col-sm-12 text-center">
-            <h2>Daftar LAB Yang Telah di pesan</h2>
-            <hr>
-          </div>
-        </div>
-
-        <!-- daftar lab -->
-        <div class="row">
-          <?php foreach($labku as $lb ) :  ?>
-            <div class="col-sm-4">
-              <div  class="thumbnail">
-                <img style="height: 300px" src="<?php echo base_url('upload/foto_lab/').$lb->foto ?>">
-                <div class="card-body">
-                  <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
-                    <table class="table">
-											<tr>
-												<td>Nama Lab<td>
-												<td>:</td>
-												<td><?php echo $lb->nama_lab ?></td>
-											</tr>
-
-											<?php foreach($cek_booking as $key => $cek): ?>
-											<?php if($cek->kode_lab == $lb->kode_lab): ?>
-											<tr>
-												<td>Telah di pesan<td>
-												<td>:</td>
-												<td>Ya</td>
-											</tr>
-											<tr>
-												<td>Sampai Tanggal<td>
-												<td>:</td>
-												<td><?= $cek->batas_pemakaian ?></td>
-											</tr>
-											<tr>
-												<td>Nama Kelas<td>
-												<td>:</td>
-												<td><?= $cek->kelas ?></td>
-											</tr>
-											<tr>
-												<td>Mata Pelajaran<td>
-												<td>:</td>
-												<td><?= $cek->mata_pelajaran ?></td>
-											</tr>
-											<?php break; elseif($key == count($cek_booking)-1): ?>
-											<tr>
-												<td>Telah di Pesan<td>
-												<td>:</td>
-												<td>Tidak</td>
-											</tr>
-											<tr>
-												<td>Sampai Tanggal<td>
-												<td>:</td>
-												<td>-</td>
-											</tr>
-											<?php endif ?>
-											<?php endforeach; ?>
-
-											<?php if(empty(count($cek_booking))): ?>
-											<tr>
-												<td>Telah di booking<td>
-												<td>:</td>
-												<td>Belum</td>
-											</tr>
-											<tr>
-												<td>Sampai Tanggal<td>
-												<td>:</td>
-												<td>-</td>
-											</tr>
-											<?php endif; ?>
-										</table>
-									</div>
-									<div style="text-align: center">
-										<button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
-									</div>
-								</div>
-							</div>
-						</div>
-            <?php endforeach ?>
-          </div>
-				</div>
-      </section>
-      <br>
-      <br>
       <!-- daftar lab -->
+      <div class="row">
+        <?php foreach($booking as $lb ) :  ?>
+          <div class="col-sm-2">
+           <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
+            <table class="table">
+             <tr>
+              <td class="text-center"><?php echo $lb->tanggal_pemakaian.'<br><center>-</center>'.$lb->batas_pemakaian?></td>
+            </tr>	
+          </table>
+        </div>
+      </div>
+    <?php endforeach ?>
+  </div>
+</div>
 
 
-      <!-- contact -->
-<!--       <section class="contact" id="contact">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 text-center">
-              <h2>Contact</h2>
-              <hr>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h2>Daftar LAB Yang Tersedia</h2>
+      <hr>
+    </div>
+  </div>
+
+  <!-- daftar lab -->
+  <div class="row">
+    <?php foreach($data_lab as $lb ) :  ?>
+      <div class="col-sm-4">
+        <div  class="thumbnail">
+          <img style="height: 300px" src="<?php echo base_url('upload/foto_lab/').$lb->foto ?>">
+          <div class="card-body">
+            <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
+              <table class="table">
+               <tr>
+                <td>Nama Lab<td>
+                  <td>:</td>
+                  <td><?php echo $lb->nama_lab ?></td>
+                </tr>	
+              </table>
+            </div>
+            <div style="text-align: center">
+              <button <?php foreach($cek_booking as $value): echo $value->kode_lab === $lb->kode_lab ? "disabled" : null; break; endforeach ?>  type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
+              <button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
             </div>
           </div>
+        </div>
+      </div>
+    <?php endforeach ?>
+  </div>
+</div>
 
-          <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
-              <form>
-                <div class="form-group">
-                  <label for="nama">Nama</label>
-                  <input type="text" id="nama" class="form-control" placeholder="masukkan nama">
-                </div>
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" class="form-control" placeholder="masukkan email">
-                </div>
-                <div class="form-group">
-                  <label for="telp">No Telepon</label>
-                  <input type="tel" id="telp" class="form-control" placeholder="masukkan no telepon">
-                </div>
-                <select class="form-control">
-                  <option>-- Pilih Kategori --</option>
-                  <option>Web Design</option>
-                  <option>Web Development</option>
-                </select>
-                <div class="form-group">
-                  <label for="pesan">Pesan</label>
-                  <textarea class="form-control" rows="10" placeholder="masukkan pesan"></textarea>
-                </div>adeadada
-adeadada
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h2>Daftar Pengajuan Yang Sudah Di approve</h2>
+      <hr>
+    </div>
+  </div>
+
+  <!-- daftar Request lab -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped" id="datatable" style="width:100%">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Kode Pengajuan</th>
+              <th>Kode LAB</th>
+              <th>Nama Guru</th>
+              <td>Waktu Pengajuan</td>
+              <th>waktu pengajuan LAB</th>
+              <th>Batas Pengajuan LAB</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php $no=1;  foreach($booking as $pn) :?>
+            <tr>
+              <td><?php echo $no++ ?></td>
+              <td><?php echo $pn->kode_pengajuan ?></td>
+              <td><?php echo $pn->kode_lab ?></td>
+              <td><?php echo $pn->nama_guru ?></td>
+              <td><?php echo $pn->tanggal_pengajuan ?></td>
+              <td><?php echo $pn->tanggal_pemakaian ?></td>
+              <td><?php echo $pn->batas_pemakaian ?></td>
+            </tr>
+          <?php endforeach ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+<!-- daftar lab -->
 
 
-      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src="<?php echo base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>
-      <script src="<?php echo base_url('assets/') ?>js/jquery.easing.1.3.js"></script>
-      <!-- Include all compiled plugins (below), or include individual files as needed -->
-      <script src="<?php echo base_url('assets/') ?>js/bootstrap.min.js"></script>
-      <script src="<?php echo base_url('assets/') ?>js/script.js"></script>
-      <script src="<?php echo base_url('assets/') ?>sweetalert/sweetalert2.all.min.js"></script>
-      <!--   jquery -->
-      <script type="text/javascript">
-        $(document).ready(function(){
+
+<div class="footer" style="background-color: white; height: 60px; margin-bottom: 10px; margin-top: 100px">
+  <center style="line-height: 60px; font-weight: bold">CopyRight&copy; ALL Received 2020</center>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="<?php echo base_url('assets/') ?>vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url('assets/') ?>js/jquery.easing.1.3.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="<?php echo base_url('assets/') ?>js/bootstrap.min.js"></script>
+<script src="<?php echo base_url('assets/') ?>js/script.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/datatable/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url('assets/') ?>sweetalert/sweetalert2.all.min.js"></script>
+<!--   jquery -->
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('#datatable').DataTable();
           //untuk nampilikan modal pengajuan
           $('.tombol-pengajuan').on('click', function(){
             let id = $(this).data('id');
@@ -279,65 +207,65 @@ adeadada
               <div class="form-group">
               <label for="kode_guru">Kode Guru</label>
               <input required="" type="text" readonly name="kode_guru" class="form-control" id="kode_guru" value="<?php echo $this->session->userdata('kode_guru') ?>">
-							</div>
-							<div class="form-group">
+              </div>
+              <div class="form-group">
               <label for="sampai_jam">Nama Kelas</label>
-							<select name="nama_kelas"  class="form-control">
-							<?php foreach($kelas as $name_kelas): ?>
-							<option value="<?= $name_kelas->nama_kelas ?>"><?= $name_kelas->nama_kelas ?></option>
-							<?php endforeach; ?>
-							</select>
-							</div>
-							<div class="form-group">
-              <label for="sampai_jam">Mata Pelajaran</label>
-							<select name="mata_pelajaran"  class="form-control">
-							<?php foreach($pelajaran as $mata_pelajaran): ?>
-							<option value="<?= $mata_pelajaran->mata_pelajaran ?>"><?= $mata_pelajaran->mata_pelajaran ?></option>
-							<?php endforeach; ?>
-							</select>
-							</div>
-              <div class="form-group">
-              <label for="nama_guru">Nama</label>
-              <input required="" type="text" name="nama_guru" class="form-control" id="nama_guru" value="<?php echo $this->session->userdata('nama') ?>">
-              </div>
-              <div class="form-group">
-              <label for="nohp_guru">Nomer HP</label>
-              <input required="" type="text" name="nohp_guru" class="form-control" id="nohp_guru" value="<?php echo $this->session->userdata('no_hp') ?>">
-              </div>
-              <div class="form-group">
-              <label for="tanggal_pemakaian">Tanggal Pemakaian</label>
-              <input required="" type="date" name="tanggal_pemakaian" class="form-control" id="tanggal_pemakaian" >
-              </div>
-              <div class="form-group">
-              <label for="jam_pemakaian">Jam Pemakaian</label>
-              <input required="" type="time" name="jam_pemakaian" min="09:00" max="21:00" class="form-control" id="jam_pemakaian" >
-              </div>
-              <div class="form-group">
-              <label for="sampai_jam">Sampai Jam</label>
-              <input required="" type="time" name="sampai_jam" min="09:00" max="21:00" class="form-control" id="sampai_jam" >
-							</div>
-              <div class="form-group">
-              <label for="keterangan">Keterangan</label>
-              <textarea name="keterangan" rows="3" class="form-control" id="keterangan"></textarea>
-              </div>
-              <div class="form-group">
-              <label for="foto">Foto</label>
-              <br>
-              <img src="<?php echo base_url('upload/foto_guru/').$this->session->userdata('foto') ?>" width="100" class="img-thumbnail mb-2">
-              <input type="file" name="foto" class="form-control" id="foto">
-              <input type="text" hidden="" value="<?php echo $this->session->userdata('foto') ?>" name="foto_lama" >
-              </div>
-              <div class="bawah-request">
-              <button style="width:168px" type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-              <button style="width:168px"  class="btn btn-danger" type="reset">Reset</button>
-              <button style="width:168px"  id="tombol-megajukan"  type="submit" class="btn btn-primary">Mengajukan</button>
-              </div>
-              </div>
-              </form>
-              `
-              );
-            $('#modal-pengajuan').modal('show');
-          })
+              <select name="nama_kelas"  class="form-control">
+              <?php foreach($kelas as $name_kelas): ?>
+               <option value="<?= $name_kelas->nama_kelas ?>"><?= $name_kelas->nama_kelas ?></option>
+             <?php endforeach; ?>
+             </select>
+             </div>
+             <div class="form-group">
+             <label for="sampai_jam">Mata Pelajaran</label>
+             <select name="mata_pelajaran"  class="form-control">
+             <?php foreach($pelajaran as $mata_pelajaran): ?>
+               <option value="<?= $mata_pelajaran->mata_pelajaran ?>"><?= $mata_pelajaran->mata_pelajaran ?></option>
+             <?php endforeach; ?>
+             </select>
+             </div>
+             <div class="form-group">
+             <label for="nama_guru">Nama</label>
+             <input required="" type="text" name="nama_guru" class="form-control" id="nama_guru" value="<?php echo $this->session->userdata('nama') ?>">
+             </div>
+             <div class="form-group">
+             <label for="nohp_guru">Nomer HP</label>
+             <input required="" type="text" name="nohp_guru" class="form-control" id="nohp_guru" value="<?php echo $this->session->userdata('no_hp') ?>">
+             </div>
+             <div class="form-group">
+             <label for="tanggal_pemakaian">Tanggal Pemakaian</label>
+             <input required="" type="date" name="tanggal_pemakaian" class="form-control" id="tanggal_pemakaian" >
+             </div>
+             <div class="form-group">
+             <label for="jam_pemakaian">Jam Pemakaian</label>
+             <input required="" type="time" name="jam_pemakaian" min="06:00" max="21:00" class="form-control" id="jam_pemakaian" >
+             </div>
+             <div class="form-group">
+             <label for="sampai_jam">Sampai Jam</label>
+             <input required="" type="time" name="sampai_jam" min="06:00" max="21:00" class="form-control" id="sampai_jam" >
+             </div>
+             <div class="form-group">
+             <label for="keterangan">Keterangan</label>
+             <textarea name="keterangan" rows="3" class="form-control" id="keterangan"></textarea>
+             </div>
+             <div class="form-group">
+             <label for="foto">Foto</label>
+             <br>
+             <img src="<?php echo base_url('upload/foto_guru/').$this->session->userdata('foto') ?>" width="100" class="img-thumbnail mb-2">
+             <input type="file" name="foto" class="form-control" id="foto">
+             <input type="text" hidden="" value="<?php echo $this->session->userdata('foto') ?>" name="foto_lama" >
+             </div>
+             <div class="bawah-request">
+             <button style="width:168px" type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+             <button style="width:168px"  class="btn btn-danger" type="reset">Reset</button>
+             <button style="width:168px"  id="tombol-megajukan"  type="submit" class="btn btn-primary">Mengajukan</button>
+             </div>
+             </div>
+             </form>
+             `
+             );
+$('#modal-pengajuan').modal('show');
+})
           //end pengajuan
 
           //ajax untuk untuk pengajuan lab
@@ -449,7 +377,7 @@ adeadada
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-             <h5 class="modal-title" id="exampleModalLabel">DETAIL LAB</h5>
+            <h5 class="modal-title" id="exampleModalLabel">DETAIL LAB</h5>
           </div>
           <div class="penampung-detail-lab" style="margin:20px">
 

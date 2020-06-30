@@ -29,4 +29,7 @@ class M_guru extends CI_Model
 	public function tambah_keriwayatpengajuan($data, $table){
 		$this->db->insert($table, $data);
 	}
+	public function tampil_pengajuan(){
+		return $this->db->get_where('tb_pengajuan',['approve' => 'setuju'])->result();
+	}
 }
