@@ -87,45 +87,7 @@
 												<td>Nama Lab<td>
 												<td>:</td>
 												<td><?php echo $lb->nama_lab ?></td>
-											</tr>
-
-											<?php foreach($cek_booking as $key => $cek): ?>
-											<?php if($cek->kode_lab == $lb->kode_lab): ?>
-											<tr>
-												<td>Telah di booking<td>
-												<td>:</td>
-												<td>Sudah</td>
-											</tr>
-											<tr>
-												<td>Sampai Tanggal<td>
-												<td>:</td>
-												<td><?= $cek->batas_pemakaian ?></td>
-											</tr>
-											<?php break; elseif($key == count($cek_booking)-1): ?>
-											<tr>
-												<td>Telah di booking<td>
-												<td>:</td>
-												<td>Belum</td>
-											</tr>
-											<tr>
-												<td>Sampai Tanggal<td>
-												<td>:</td>
-												<td>-</td>
-											</tr>
-											<?php endif ?>
-											<?php endforeach; ?>
-											<?php if(empty(count($cek_booking))): ?>
-											<tr>
-												<td>Telah di booking<td>
-												<td>:</td>
-												<td>Belum</td>
-											</tr>
-											<tr>
-												<td>Sampai Tanggal<td>
-												<td>:</td>
-												<td>-</td>
-											</tr>
-											<?php endif; ?>
+											</tr>	
 										</table>
 									</div>
 									<div style="text-align: center">

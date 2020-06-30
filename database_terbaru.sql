@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: Jun 30, 2020 at 07:45 AM
+-- Generation Time: Jun 30, 2020 at 09:14 AM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.1
 
@@ -97,8 +97,7 @@ CREATE TABLE `tb_lab` (
 --
 
 INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`, `foto`, `keterangan`) VALUES
-(8, 'LAB00001', 'A7YY', 'tv, ac', 'aktif', '0329a2cbba4ca78f078fea1e71e73f16.png', 'ini lab komputer'),
-(0, 'LAB0002', 'adeadada', 'asdsad', 'aktif', 'c48717196019a1ccd1379fd95a5aabd1.png', 'asdsadasd');
+(8, 'LAB00001', 'A7YY', 'tv, ac', 'aktif', '0329a2cbba4ca78f078fea1e71e73f16.png', 'ini lab komputer');
 
 -- --------------------------------------------------------
 
@@ -108,16 +107,10 @@ INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`,
 
 CREATE TABLE `tb_pelajaran` (
   `id` int NOT NULL,
-  `mata_pelajaran` varchar(100) NOT NULL
+  `mata_pelajaran` varchar(100) NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_berakhir` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tb_pelajaran`
---
-
-INSERT INTO `tb_pelajaran` (`id`, `mata_pelajaran`) VALUES
-(5, 'B. Indonesia'),
-(6, 'B. Jepang');
 
 -- --------------------------------------------------------
 
@@ -253,7 +246,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=437;
 
 --
 -- AUTO_INCREMENT for table `tb_kelas`

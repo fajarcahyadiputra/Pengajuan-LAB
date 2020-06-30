@@ -9,13 +9,13 @@
 			
 			<div>
 				Kode Lab: 
-				<select style="height: 38px">
-					<option <?= empty($kode_lab) ? "selected" : null ?> onclick="window.location.href=`<?= base_url('/admin/riwayat_pengajuan/') ?>`">
+				<select style="height: 38px" onchange="window.location.href=`<?= base_url('/admin/riwayat_pengajuan') ?>/${this.value}`">
+					<option <?= empty($kode_lab) ? "selected" : null ?> value="">
 						Semua
 					</option>
 					
 					<?php foreach($kd_lab as $pn): ?>
-					<option <?= $kode_lab == $pn->kode_lab ? "selected" : null ?> onclick="window.location.href=`<?= base_url('/admin/riwayat_pengajuan/'.$pn->kode_lab) ?>`">
+					<option <?= $kode_lab == $pn->kode_lab ? "selected" : null ?> value="<?= $pn->kode_lab ?>" >
 						<?= $pn->kode_lab ?>	
 					</option>
 					<?php endforeach; ?>
@@ -78,3 +78,9 @@
 	</div>
 </div>
 <!-- end modal edit data -->
+
+<script>
+	function optionOnclick(value) {
+		return window.location.href=`<?= base_url('/admin/riwayat_pengajuan') ?>/${value}`
+	}
+</script>

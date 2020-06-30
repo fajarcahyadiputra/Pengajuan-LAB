@@ -27,6 +27,7 @@ class Admin extends CI_Controller
 		$this->load->view('admin/templet/footer');
 	}
 	public function import_data_guru() {
+		error_reporting(0);
 		include 'assets/PHPExcel/PHPExcel.php';
 		
 		$config['upload_path'] = realpath('assets/excel');
@@ -66,7 +67,7 @@ class Admin extends CI_Controller
 
 			$this->db->insert_batch("tb_guru", $dataGuru);
 
-			return redirect("/admin/data_guru");
+			echo "<script>window.location.href='".base_url('admin/data_guru')."'</script>";
 		}
 	}
 	public function tambah_data_guru(){
