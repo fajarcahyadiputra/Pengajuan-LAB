@@ -61,11 +61,33 @@
     </div>
     <!-- akhir jumbotron -->
 
-
-
-
     <!-- portfolio -->
     <section class="portfolio" id="portfolio">
+			<div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <h2>Daftar Jam/Lab Yang sudah di booking</h2>
+            <hr>
+          </div>
+        </div>
+
+        <!-- daftar lab -->
+        <div class="row">
+          <?php foreach($cek_booking as $lb ) :  ?>
+            <div class="col-sm-2">
+							<div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
+								<table class="table">
+									<tr>
+										<td class="text-center"><?php echo $lb->tanggal_pemakaian ?></td>
+									</tr>	
+								</table>
+							</div>
+						</div>
+					<?php endforeach ?>
+				</div>
+			</div>
+						
+
       <div class="container">
         <div class="row">
           <div class="col-sm-12 text-center">
