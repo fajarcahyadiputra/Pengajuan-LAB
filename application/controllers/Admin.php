@@ -52,6 +52,7 @@ class Admin extends CI_Controller
 					if(!empty($data['A']) && !empty($data['B']) && !empty($data['C']) &&
 					!empty($data['D']) && !empty($data['E']) && !empty($data['F'])) {
 						$dataGuru[] = [
+							'foto'					=> "1bed72ca3924964154c5eaa554bb490d.png",
 							'kode_guru' 		=> $data['A'],
 							'nama_guru' 		=> $data['B'],
 							'username' 			=> $data['C'],
@@ -108,18 +109,14 @@ class Admin extends CI_Controller
 
 		echo json_encode($pesan);
 	}
-	public function hapus_data_guru($id,$foto){
+	public function hapus_data_guru($id){
 		$pesan = array();
 		$where = ['id' =>  $id];
-		$delete = $this->admin->hapus_data_guru($where,'tb_guru');
+		$this->admin->hapus_data_guru($where,'tb_guru');
 
-		if($delete){
 			$pesan['delete'] = true;
-			unlink(FCPATH. 'upload/foto_guru/' . $foto);
-		}else{
-			$pesan['delete'] = false;
-		}
-		echo json_encode($pesan);
+		
+			echo json_encode($pesan);
 	}
 	public function tampil_dataeditguru($id){
 		$result = array();
@@ -636,11 +633,26 @@ class Admin extends CI_Controller
 
 	public function riwayat_pengajuan_sort() {
 		$data['title'] = 'Riwayat Pengajuan Lab';
-
 		$this->load->view('admin/templet/header',$data);
 		$this->load->view('admin/templet/sidebar');
-		$this->load->view('admin/riwayat_pengajuan_sort',$data);
+		
+		$this->riwayat_pengajuan_sort_post();
+		
 		$this->load->view('admin/templet/footer');
+	}
+
+	private function riwayat_pengajuan_sort_post() {
+		if($_SERVER['REQUEST_METHOD'] == "POST") {
+			$data['riwayat'] = $this->db
+															->where(["tanggal_pengajuan >= " => $this->input->post('awal')])
+															->where(["tanggal_pengajuan <= " => $this->input->post('akhir')])
+															->order_by("id", "desc")->get("tb_riwayatpengajuan")->result();
+			
+			$this->load->view('admin/riwayat_pengajuan_sort_show', $data);
+		} else {
+			$this->load->view('admin/riwayat_pengajuan_sort');
+
+		}
 	}
 }
 

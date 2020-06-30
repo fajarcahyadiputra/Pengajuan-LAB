@@ -52,6 +52,7 @@
         <a class="collapse-item" href="<?php echo base_url('admin/request_lab') ?>">Pengajuan LAB</a>
         <a class="collapse-item" href="<?php echo base_url('admin/request_lab_approve') ?>">Pengajuan Di Setujui</a>
         <a class="collapse-item" href="<?php echo base_url('admin/riwayat_pengajuan') ?>">Riwayat Pengajuan</a>
+        <a class="collapse-item" href="<?php echo base_url('admin/riwayat_pengajuan_sort') ?>">Riwayat Pengajuan Filter</a>
       </div>
     </div>
   </li>

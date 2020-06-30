@@ -62,7 +62,7 @@
 						<td>
 							<div class="tombol-aksi">	
 								<button type="button" data-id="<?php echo $gr->id ?>" id="tombol-editguru" class="btn btn-primary"><i class="fa fa-edit"></i></button>
-								<button type="button" data-foto="<?php echo $gr->foto ?>" data-id="<?php echo $gr->id ?>" id="tombol-hapusguru" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+								<button type="button" data-id="<?php echo $gr->id ?>" id="tombol-hapusguru" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 							</div>
 						</td>
 					</tr>
