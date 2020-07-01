@@ -210,17 +210,17 @@
               </div>
               <div class="form-group">
               <label for="sampai_jam">Nama Kelas</label>
-              <select name="nama_kelas"  class="form-control">
+              <select name="kode_kelas"  class="form-control">
               <?php foreach($kelas as $name_kelas): ?>
-               <option value="<?= $name_kelas->nama_kelas ?>"><?= $name_kelas->nama_kelas ?></option>
+               <option value="<?= $name_kelas->kode_kelas ?>"><?= $name_kelas->nama_kelas ?></option>
              <?php endforeach; ?>
              </select>
              </div>
              <div class="form-group">
              <label for="sampai_jam">Mata Pelajaran</label>
-             <select name="mata_pelajaran"  class="form-control">
+             <select name="kode_matapelajaran"  class="form-control">
              <?php foreach($pelajaran as $mata_pelajaran): ?>
-               <option value="<?= $mata_pelajaran->mata_pelajaran ?>"><?= $mata_pelajaran->mata_pelajaran ?></option>
+               <option value="<?= $mata_pelajaran->kode_matapelajaran ?>"><?= $mata_pelajaran->mata_pelajaran ?></option>
              <?php endforeach; ?>
              </select>
              </div>

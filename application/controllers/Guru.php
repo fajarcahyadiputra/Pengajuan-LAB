@@ -62,8 +62,8 @@ class Guru extends CI_Controller
 			'nohp_guru'		 => $nohp_guru,
 			'keterangan'     => $keterangan,
 			'foto_guru'		=> $foto,
-			'kelas' 	=> $this->input->post("nama_kelas"),
-			'mata_pelajaran' 	=> $this->input->post("mata_pelajaran"),
+			'kode_kelas' 	=> $this->input->post("kode_kelas"),
+			'kode_matapelajaran' 	=> $this->input->post("kode_matapelajaran"),
 			'approve'		=> 'tidak'
 		];
 

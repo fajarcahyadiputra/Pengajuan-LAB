@@ -40,8 +40,6 @@
 					<tr>
 						<th>No</th>
 						<th>Mata Pelajaran</th>
-						<th>Jam Mulai</th>
-						<th>Jam Berakhir</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -50,11 +48,9 @@
 					<tr>
 						<td><?php echo $no++ ?></td>
 						<td><?php echo $gr->mata_pelajaran ?></td>
-						<td><?php echo $gr->jam_mulai ?></td>
-						<td><?php echo $gr->jam_berakhir ?></td>
 						<td>
 							<div class="tombol-aksi">	
-								<a href="<?= base_url('admin/hapus_pelajaran/'.$gr->id) ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+								<a href="<?= base_url('admin/hapus_pelajaran/'.$gr->kode_matapelajaran) ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</div>
 						</td>
 					</tr>
@@ -79,16 +75,6 @@
 					<div class="form-group">
 						<label>Nama Pelajaran</label>
 						<input required="" type="text" name="mata_pelajaran" class="form-control"> 
-					</div>
-
-					<div class="form-group">
-						<label>Jam Mulai</label>
-						<input required="" type="time" name="jam_mulai" min="09:00" max="21:00" class="form-control"> 
-					</div>
-
-					<div class="form-group">
-						<label>Jam Berakhir</label>
-						<input required="" type="time" name="jam_berakhir" min="09:00" max="21:00" class="form-control"> 
 					</div>
 					<button type="submit" class="btn btn-primary">Tambahkan</button>
 					<button type="reset" class="btn btn-danger tombol-reset ml-2">Reset</button>

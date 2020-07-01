@@ -50,7 +50,7 @@
 						<td><?php echo $gr->nama_kelas ?></td>
 						<td>
 							<div class="tombol-aksi">	
-								<a href="<?= base_url('admin/hapus_kelas/'.$gr->id) ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+								<a href="<?= base_url('admin/hapus_kelas/'.$gr->kode_kelas) ?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</div>
 						</td>
 					</tr>

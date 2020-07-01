@@ -597,8 +597,6 @@ class Admin extends CI_Controller
 	public function tambah_pelajaran() {
 		$data = [
 			"mata_pelajaran" => $this->input->post('mata_pelajaran'),
-			'jam_mulai' => $this->input->post('jam_mulai'),
-			'jam_berakhir' => $this->input->post('jam_berakhir'),
 		];
 
 		$this->db->insert("tb_pelajaran", $data);
