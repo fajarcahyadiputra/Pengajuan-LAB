@@ -95,8 +95,8 @@
 						<input required="" type="text" name="nama_guru" class="form-control" id="nama_guru"> 
 					</div>
 					<div class="form-group">
-						<label for="email">Email</label>
-						<input  required="" type="email" id="email" name="email" class="form-control">
+						<label for="username">Username</label>
+						<input  required="" type="username" id="username" name="username" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="apakah_aktif">Apakah Aktif</label>
@@ -104,6 +104,10 @@
 							<option value="aktif">Aktif</option>
 							<option value="tidak">Tidak</option>
 						</select>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input  required="" type="email" id="email" name="email" class="form-control">
 					</div>
 					<div class="form-group">
 						<label for="password">Password</label>
@@ -115,7 +119,7 @@
 					</div>
 					<div class="form-group">
 						<label for="foto">Foto</label>
-						<input  required="" type="file" id="foto" name="foto" class="form-control">
+						<input  type="file" id="foto" name="foto" class="form-control">
 					</div>
 					<button type="submit" class="btn btn-primary" id="tambah-guru">Tambahkan</button>
 					<button type="reset" class="btn btn-danger tombol-reset ml-2">Reset</button>
@@ -162,7 +166,7 @@
 				</button>
 			</div>
 			<div class="penampung-edit-guru">
-						
+
 			</div>
 		</div>
 	</div>

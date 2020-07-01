@@ -53,7 +53,7 @@ class Admin extends CI_Controller
 					if(!empty($data['A']) && !empty($data['B']) && !empty($data['C']) &&
 					!empty($data['D']) && !empty($data['E']) && !empty($data['F'])) {
 						$dataGuru[] = [
-							'foto'					=> "1bed72ca3924964154c5eaa554bb490d.png",
+							'foto'					=> "default.jpg",
 							'kode_guru' 		=> $data['A'],
 							'nama_guru' 		=> $data['B'],
 							'username' 			=> $data['C'],
@@ -77,16 +77,17 @@ class Admin extends CI_Controller
 		$kode		= $this->input->post('kode_guru');
 		$nama		= $this->input->post('nama_guru');
 		$email		= $this->input->post('email');
+		$username	= $this->input->post('username');
 		$nohp		= $this->input->post('no_hp');
 		$a_aktif    = $this->input->post('apakah_aktif');
-		$pass		= sha1($this->input->post('password'));
+		$pass		= $this->input->post('password');
 
 		$config['upload_path'] 	 = './upload/foto_guru';
 		$config['allowed_types'] = 'jpg|png|gift|jpeg';
 		$config['encrypt_name']	 = true;
 		$this->load->library('upload', $config);
 		if(!$this->upload->do_upload('foto')){
-			$foto = $this->upload->display_error();
+			$foto = 'default.jpg';
 		}else{
 			$foto = $this->upload->data('file_name');
 		}
@@ -95,6 +96,7 @@ class Admin extends CI_Controller
 			'nama_guru'		 => $nama,
 			'kode_guru'		 => $kode,
 			'email'			 => $email,
+			'username'		 => $username,
 			'apakah_aktif' 	 => $a_aktif,
 			'no_hp'			 => $nohp,
 			'password'		 => $pass,
@@ -161,7 +163,7 @@ class Admin extends CI_Controller
 			if($pass_i == $pass->password){
 				$pass = $this->input->post('password');
 			}else{
-				$pass = sha1($this->input->post('password'));
+				$pass = $this->input->post('password');
 			}
 		}
 		
@@ -261,7 +263,7 @@ class Admin extends CI_Controller
 		echo json_encode($pesan);
 	}
 	public function tampil_data_edit_lab($id){
-		$where  = ['id' => $id];
+		$where  = ['kode_lab' => $id];
 		$result = array();
 
 		$query  = $this->admin->tampil_data_edit_lab('tb_lab', $where);
@@ -459,8 +461,8 @@ class Admin extends CI_Controller
 			$result['tanggal_pemakaian'] = $isi->tanggal_pemakaian;
 			$result['batas_pemakaian'] = $isi->batas_pemakaian;
 			$result['nohp_guru'] = $isi->nohp_guru;
-			$result['kelas'] = $isi->kelas;
-			$result['mata_pelajaran'] = $isi->mata_pelajaran;
+			$result['kode_kelas'] = $isi->kode_kelas;
+			$result['kode_matapelajaran'] = $isi->kode_matapelajaran;
 			$result['foto_guru'] = $isi->foto_guru;
 			$result['keterangan'] = $isi->keterangan;
 		}
@@ -494,8 +496,7 @@ class Admin extends CI_Controller
 		$kode_user 			= $this->input->post('kode_user');
 		$nama 				= $this->input->post('nama');
 		$username 			= $this->input->post('username');
-		$password 			= sha1($this->input->post('password'));
-		$password_text 		= $this->input->post('password');
+		$password 			= $this->input->post('password');
 		$email 				= $this->input->post('email');
 		$no_hp 				= $this->input->post('no_hp');
 		$status_aktif 		= $this->input->post('status_aktif');
@@ -505,7 +506,6 @@ class Admin extends CI_Controller
 			'nama' 			=> $nama,
 			'username' 		=> $username,
 			'password' 		=> $password,
-			'text_password' => $password_text,
 			'email' 		=> $email,
 			'no_hp' 		=> $no_hp,
 			'status_aktif' 	=> $status_aktif,
@@ -542,8 +542,7 @@ class Admin extends CI_Controller
 		$kode_user 			= $this->input->post('kode_user');
 		$nama 				= $this->input->post('nama');
 		$username 			= $this->input->post('username');
-		$password 			= sha1($this->input->post('password'));
-		$password_text 		= $this->input->post('password');
+		$password 			= $this->input->post('password');
 		$email 				= $this->input->post('email');
 		$no_hp 				= $this->input->post('no_hp');
 		$status_aktif 		= $this->input->post('status_aktif');
@@ -555,7 +554,6 @@ class Admin extends CI_Controller
 			'nama' 			=> $nama,
 			'username' 		=> $username,
 			'password' 		=> $password,
-			'text_password' => $password_text,
 			'email' 		=> $email,
 			'no_hp' 		=> $no_hp,
 			'status_aktif' 	=> $status_aktif,
@@ -596,6 +594,7 @@ class Admin extends CI_Controller
 
 	public function tambah_pelajaran() {
 		$data = [
+			'kode_matapelajaran' => date('his'),
 			"mata_pelajaran" => $this->input->post('mata_pelajaran'),
 		];
 
@@ -605,7 +604,7 @@ class Admin extends CI_Controller
 	}
 
 	public function hapus_pelajaran($id) {
-		$this->db->where('id', $id)->delete('tb_pelajaran');
+		$this->db->where('kode_matapelajaran', $id)->delete('tb_pelajaran');
 
 		return redirect(base_url('admin/data_pelajaran'));
 	}
@@ -630,7 +629,7 @@ class Admin extends CI_Controller
 	}
 
 	public function hapus_kelas($id) {
-		$this->db->where('id', $id)->delete('tb_kelas');
+		$this->db->where('kode_kelas', $id)->delete('tb_kelas');
 
 		return redirect(base_url('admin/data_kelas'));
 	}

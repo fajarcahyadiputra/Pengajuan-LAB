@@ -14,7 +14,7 @@
     <title>My Porfolio</title>
 
     <!-- Bootstrap -->
-      <link href="<?php echo base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/') ?>css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/style.css">
     <link href="<?php echo base_url('assets/') ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,7 +63,7 @@
     <!-- akhir jumbotron -->
 
     <!-- portfolio -->
-     <div class="container">
+    <div class="container">
       <div class="row">
         <div class="col-sm-12 text-center">
           <h2>Daftar Jam/Lab Yang sudah di booking</h2>
@@ -113,7 +113,7 @@
               </table>
             </div>
             <div style="text-align: center">
-              <button <?php foreach($cek_booking as $value): echo $value->kode_lab === $lb->kode_lab ? "disabled" : null; break; endforeach ?>  type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
+              <button   type="button" data-id="<?php echo $lb->kode_lab ?>"  class="btn btn-sm btn-warning tombol-pengajuan" style="width: 220px">Request LAB</button>
               <button type="button" data-id="<?php echo $lb->kode_lab ?>" class="btn btn-sm btn-primary tombol-detail" style="width: 120px"><i class="fa fa-info"></i></button>
             </div>
           </div>
@@ -238,11 +238,19 @@
              </div>
              <div class="form-group">
              <label for="jam_pemakaian">Jam Pemakaian</label>
-             <input required="" type="time" name="jam_pemakaian" min="06:00" max="21:00" class="form-control" id="jam_pemakaian" >
+             <select name="jam_pemakaian"  class="form-control">
+             <?php for($i=1; $i <= 24; $i++): ?>
+              <option value="<?php echo $i ?>"><?php echo 'Jam '.$i ?></option>
+             <?php endfor; ?>
+             </select>
              </div>
              <div class="form-group">
              <label for="sampai_jam">Sampai Jam</label>
-             <input required="" type="time" name="sampai_jam" min="06:00" max="21:00" class="form-control" id="sampai_jam" >
+             <select name="sampai_jam"  class="form-control">
+             <?php for($i=1; $i <= 24; $i++): ?>
+               <option value="<?php echo $i ?>"><?php echo 'Jam '.$i ?></option>
+             <?php endfor; ?>
+             </select>
              </div>
              <div class="form-group">
              <label for="keterangan">Keterangan</label>
@@ -379,7 +387,7 @@ $('#modal-pengajuan').modal('show');
             </button>
             <h5 class="modal-title" id="exampleModalLabel">DETAIL LAB</h5>
           </div>
-          <div class="penampung-detail-lab" style="margin:20px">
+          <div class="modal-body penampung-detail-lab" style="margin:20px;">
 
           </div>
         </div>

@@ -483,14 +483,14 @@
             <td>${hasil.batas_pemakaian}</td>
             </tr>
 						<tr>
-            <th>Nama Kelas</th>
+            <th>Kode Kelas</th>
             <td>:</td>
-            <td>${hasil.kelas}</td>
+            <td>${hasil.kode_kelas}</td>
 						</tr>
 						<tr>
-            <th>Mata Pelajaran</th>
+            <th>Kode Pelajaran</th>
             <td>:</td>
-            <td>${hasil.mata_pelajaran}</td>
+            <td>${hasil.kode_matapelajaran}</td>
             </tr>
             <tr>
             <th>NO Handphone</th>
@@ -668,7 +668,7 @@
             </div>
             <div class="form-group">
             <label for="password">Password</label>
-            <input  required="" type="text" id="password" name="password" class="form-control" value="${hasil.text_password}">
+            <input  required="" type="text" id="password" name="password" class="form-control" value="${hasil.password}">
             </div>
             <div class="form-group">
             <label for="no_hp">No HP</label>

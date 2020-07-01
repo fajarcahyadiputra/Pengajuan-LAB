@@ -45,7 +45,7 @@
 					<td><?php echo $ad->kode_user ?></td>
 					<td><?php echo $ad->nama ?></td>
 					<td><?php echo $ad->username ?></td>
-					<td><?php echo $ad->text_password ?></td>
+					<td><?php echo $ad->password ?></td>
 					<td><?php echo $ad->email ?></td>
 					<td><?php echo $ad->no_hp ?></td>
 					<td>

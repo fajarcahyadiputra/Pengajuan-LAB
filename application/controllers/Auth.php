@@ -18,7 +18,7 @@ class Auth extends CI_Controller
 
 		if($this->form_validation->run() != FALSE){
 			$username = strtolower(trim($this->input->post('username')));
-			$password = sha1($this->input->post('password'));
+			$password = $this->input->post('password');
 
 			$cek_admin_username     = $this->db->get_where('tb_user',['username' => $username, 'password' => $password])->row();
 

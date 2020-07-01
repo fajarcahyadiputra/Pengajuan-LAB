@@ -13,8 +13,8 @@
 			<th>Tanggal Diajukan</th>
 			<th>Tanggal Dipakai</th>
 			<th>Sampai Tanggal</th>
-			<th>Kelas</th>
-			<th>Mata Pelajaran</th>
+			<th>Kode Kelas</th>
+			<th>Kode Pelajaran</th>
 		</tr>
 	</thead>
 	<tbody  style=" text-align: center">
@@ -26,8 +26,8 @@
 			<td><?php echo $value->tanggal_pengajuan ?></td>
 			<td><?php echo $value->tanggal_pemakaian ?></td>
 			<td><?php echo $value->batas_pemakaian ?></td>
-			<td><?php echo $value->kelas ?></td>
-			<td><?php echo $value->mata_pelajaran ?></td>
+			<td><?php echo $value->kode_kelas ?></td>
+			<td><?php echo $value->kode_matapelajaran ?></td>
 		</tr>
 		<?php endforeach; ?>
 	</tbody>

@@ -6,7 +6,6 @@
 	<div class="container-fluid">
 		<div class="title">
 			<h2 class="text-center mb-3">Detail Pengajuan</h2>
-			<a href="<?php echo base_url('admin/request_lab') ?>" class="btn btn-primary">back</a>
 			<a href="<?php echo base_url('admin/report_pdf_pengajuan/').$pg->id?>" style="float: right; margin-bottom: 20px;" class="btn btn-success mr-4">Ekport PDF</a>
 		</div>
 		<hr>
@@ -40,12 +39,12 @@
 				<input type="text" readonly="" class="form-control" value="<?php echo $pg->batas_pemakaian ?>">
 			</div>
 			<div class="form-group">
-				<label>Nama Kelas</label>
-				<input type="text" readonly="" class="form-control" value="<?php echo $pg->kelas ?>">
+				<label>Kode Kelas</label>
+				<input type="text" readonly="" class="form-control" value="<?php echo $pg->kode_kelas ?>">
 			</div>
 			<div class="form-group">
-				<label>Mata Pelajaran</label>
-				<input type="text" readonly="" class="form-control" value="<?php echo $pg->mata_pelajaran ?>">
+				<label>Kode Pelajaran</label>
+				<input type="text" readonly="" class="form-control" value="<?php echo $pg->kode_matapelajaran ?>">
 			</div>
 			<div class="form-group">
 				<label>Nomer HP</label>

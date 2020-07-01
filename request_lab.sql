@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jul 2020 pada 08.51
+-- Waktu pembuatan: 01 Jul 2020 pada 17.42
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -41,6 +41,13 @@ CREATE TABLE `tb_guru` (
   `foto` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `tb_guru`
+--
+
+INSERT INTO `tb_guru` (`id`, `kode_guru`, `nama_guru`, `username`, `email`, `password`, `apakah_aktif`, `no_hp`, `tanggal_daftar`, `foto`) VALUES
+(20, 'GR0001', 'fajar cahyadi putra', 'user', 'asep@tajh.jhduw', '2323', 'aktif', '089528426482642', '0000-00-00 00:00:00', 'af3ba01deea63a460c662ca93fb6a533.PNG');
+
 -- --------------------------------------------------------
 
 --
@@ -57,17 +64,7 @@ CREATE TABLE `tb_kelas` (
 --
 
 INSERT INTO `tb_kelas` (`kode_kelas`, `nama_kelas`) VALUES
-(2, 'I'),
-(3, 'II'),
-(4, 'III'),
-(5, 'IV'),
-(6, 'VI'),
-(7, 'VII'),
-(8, 'VIII'),
-(9, 'IX'),
-(10, 'X'),
-(11, 'XI'),
-(12, 'XII');
+(13, 'abc');
 
 -- --------------------------------------------------------
 
@@ -90,7 +87,7 @@ CREATE TABLE `tb_lab` (
 --
 
 INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`, `foto`, `keterangan`) VALUES
-(8, 'LAB00001', 'A7YY', 'tv, ac', 'aktif', '0329a2cbba4ca78f078fea1e71e73f16.png', 'ini lab komputer');
+(0, 'LAB0001', 'lab komputer', 'ac, tv, banyak', 'aktif', '9772fd66cadf3fa9f405abb6343e5ad2.png', 'ok');
 
 -- --------------------------------------------------------
 
@@ -99,17 +96,16 @@ INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`,
 --
 
 CREATE TABLE `tb_pelajaran` (
-  `kode_matapelajaran` int(11) NOT NULL,
-  `mata_pelajaran` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `kode_matapelajaran` varchar(50) NOT NULL,
+  `mata_pelajaran` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_pelajaran`
 --
 
 INSERT INTO `tb_pelajaran` (`kode_matapelajaran`, `mata_pelajaran`) VALUES
-(7, 'mtk'),
-(8, 'indo');
+('051114', 'indo');
 
 -- --------------------------------------------------------
 
@@ -139,7 +135,7 @@ CREATE TABLE `tb_pengajuan` (
 --
 
 INSERT INTO `tb_pengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `batas_pemakaian`, `kode_matapelajaran`, `kode_kelas`, `nohp_guru`, `foto_guru`, `keterangan`, `approve`) VALUES
-(86, 'PGN0001', 'LAB00001', 'GR0001', 'fajar', '2020-07-01 01:34:23', '2020-07-15 16:34:00', '2020-07-15 18:34:00', 7, 2, '8989898', '1bed72ca3924964154c5eaa554bb490d.png', 'ok', 'tidak');
+(90, 'PGN0001', 'LAB0001', 'GR0001', 'fajar cahyadi putra', '2020-07-01 10:34:53', '2020-07-09 13:00:00', '2020-07-09 19:00:00', 51114, 13, '089528426482642', 'af3ba01deea63a460c662ca93fb6a533.PNG', 'ok', 'setuju');
 
 -- --------------------------------------------------------
 
@@ -169,7 +165,7 @@ CREATE TABLE `tb_riwayatpengajuan` (
 --
 
 INSERT INTO `tb_riwayatpengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `batas_pemakaian`, `kode_matapelajaran`, `kode_kelas`, `nohp_guru`, `foto_guru`, `keterangan`, `approve`) VALUES
-(59, 'PGN0001', 'LAB00001', 'GR0001', 'fajar', '2020-07-01 01:34:23', '2020-07-15 16:34:00', '2020-07-15 18:34:00', 7, 2, '8989898', '1bed72ca3924964154c5eaa554bb490d.png', 'ok', 'tidak');
+(63, 'PGN0001', 'LAB0001', 'GR0001', 'fajar cahyadi putra', '2020-07-01 10:34:53', '2020-07-09 13:00:00', '2020-07-09 19:00:00', 51114, 13, '089528426482642', 'af3ba01deea63a460c662ca93fb6a533.PNG', 'ok', 'setuju');
 
 -- --------------------------------------------------------
 
@@ -185,16 +181,16 @@ CREATE TABLE `tb_user` (
   `password` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
   `no_hp` varchar(20) NOT NULL,
-  `status_aktif` enum('aktif','tidak') NOT NULL,
-  `text_password` varchar(50) NOT NULL
+  `status_aktif` enum('aktif','tidak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_user`
 --
 
-INSERT INTO `tb_user` (`id`, `kode_user`, `nama`, `username`, `password`, `email`, `no_hp`, `status_aktif`, `text_password`) VALUES
-(1, 'US0001', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@gmail.com', '9849958', 'aktif', 'admin');
+INSERT INTO `tb_user` (`id`, `kode_user`, `nama`, `username`, `password`, `email`, `no_hp`, `status_aktif`) VALUES
+(3, 'US0001', 'admin', 'admin', 'admin', 'admin@gmail.com', '089528426482642', 'aktif'),
+(4, 'US0002', 'asep', 'admin', 'admin', 'asep@tajh.jhduw', '089528426482642', 'tidak');
 
 --
 -- Indexes for dumped tables
@@ -204,8 +200,7 @@ INSERT INTO `tb_user` (`id`, `kode_user`, `nama`, `username`, `password`, `email
 -- Indeks untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `kode_guru` (`kode_guru`);
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Indeks untuk tabel `tb_kelas`
@@ -232,8 +227,6 @@ ALTER TABLE `tb_pengajuan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kode_lab` (`kode_lab`),
   ADD KEY `kode_guru` (`kode_guru`),
-  ADD KEY `kode_matapelajaran` (`kode_matapelajaran`),
-  ADD KEY `kode_kelas` (`kode_kelas`),
   ADD KEY `kode_pengajuan` (`kode_pengajuan`);
 
 --
@@ -241,10 +234,8 @@ ALTER TABLE `tb_pengajuan`
 --
 ALTER TABLE `tb_riwayatpengajuan`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `kode_matapelajaran` (`kode_matapelajaran`),
   ADD KEY `kode_lab` (`kode_lab`),
-  ADD KEY `kode_guru` (`kode_guru`),
-  ADD KEY `kode_kelas` (`kode_kelas`);
+  ADD KEY `kode_guru` (`kode_guru`);
 
 --
 -- Indeks untuk tabel `tb_user`
@@ -260,37 +251,31 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `kode_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT untuk tabel `tb_pelajaran`
---
-ALTER TABLE `tb_pelajaran`
-  MODIFY `kode_matapelajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `kode_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pengajuan`
 --
 ALTER TABLE `tb_pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_riwayatpengajuan`
 --
 ALTER TABLE `tb_riwayatpengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

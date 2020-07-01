@@ -21,35 +21,35 @@ $(window).on('load', function(){
 	$('.kanan').addClass('kanan-go')
 });
 
-$(window).scroll(function(){
-	var wScroll = $(this).scrollTop();
+// $(window).scroll(function(){
+// 	var wScroll = $(this).scrollTop();
 
-	$('.jumbotron img').css({
-		'transform': 'translate(0px, '+ wScroll / 4 +'%)'
-	});
+// 	$('.jumbotron img').css({
+// 		'transform': 'translate(0px, '+ wScroll / 4 +'%)'
+// 	});
 
-	$('.jumbotron h1').css({
-		'transform': 'translate(0px, '+ wScroll / 2 +'%)'
-	});
+// 	$('.jumbotron h1').css({
+// 		'transform': 'translate(0px, '+ wScroll / 2 +'%)'
+// 	});
 
-	$('.jumbotron p').css({
-		'transform': 'translate(0px, '+ wScroll / 1.2 +'%)'
-	});
+// 	$('.jumbotron p').css({
+// 		'transform': 'translate(0px, '+ wScroll / 1.2 +'%)'
+// 	});
 
 
-	// portfolio
-	if( wScroll > $('.portfolio').offset().top - 600 ) {
+// 	portfolio
+// 	if( wScroll > $('.portfolio').offset().top - 600 ) {
 		
-		$('.portfolio .thumbnail').each(function(i) {
-			setTimeout(function() {
-				$('.portfolio .thumbnail').eq(i).addClass('muncul');
-			}, 180 * (i+1))
+// 		$('.portfolio .thumbnail').each(function(i) {
+// 			setTimeout(function() {
+// 				$('.portfolio .thumbnail').eq(i).addClass('muncul');
+// 			}, 180 * (i+1))
 
-		});
+// 		});
 
-	}
+// 	}
 
-});
+// });
 
 
 
