@@ -10,12 +10,12 @@ class Guru extends CI_Controller
 	public function index(){
 		$data['kode']     = $this->guru->tampil_kode_pengajuan();
 		$data['data_lab'] = $this->guru->tampil_data_lab();
-		$data['cek_booking'] = $this->db->get_where("tb_riwayatpengajuan", ['batas_pemakaian >' => date("Y-m-d H:i:s"), 'approve' => 'setuju'])->result();
+		$data['cek_booking'] = $this->db->get_where("tb_riwayatpengajuan", ['jam_pemakaian >' => date("Y-m-d H:i:s"), 'approve' => 'setuju'])->result();
 		$data['booking'] = $this->guru->tampil_pengajuan();
 		$data['labku'] = $this->db->select('tb_lab.*')
 			->from('tb_lab')
 			->join('tb_riwayatpengajuan', 'tb_riwayatpengajuan.kode_lab = tb_lab.kode_lab', 'inner')
-			->where(['tb_riwayatpengajuan.batas_pemakaian >' => date("Y-m-d H:i:s"), 'tb_riwayatpengajuan.approve' => 'setuju'])
+			->where(['tb_riwayatpengajuan.jam_pemakaian >' => date("Y-m-d H:i:s"), 'tb_riwayatpengajuan.approve' => 'setuju'])
 			->get()->result();
 
 		$data['kelas'] = $this->db->get('tb_kelas')->result();
@@ -33,10 +33,10 @@ class Guru extends CI_Controller
 		$keterangan 	  = htmlspecialchars($this->input->post('keterangan'));
 		$tp 			  = htmlspecialchars($this->input->post('tanggal_pemakaian'));
 		$jp 			  = htmlspecialchars($this->input->post('jam_pemakaian'));
-		$jtp 			  = $tp . ' ' . $jp;
+		$foto_lama        = $this->input->post('foto_lama');
 		$sj 			  = $this->input->post('sampai_jam');
-		$bjp 			  = $tp . ' ' . $sj;
-		$foto_lama 		  = $this->input->post('foto_lama');
+		$jtp 			  = $jp . '-' . $sj;
+		
 
 		$config['upload_path'] 		= './upload/foto_guru';
 		$config['allowed_types']	= 'png|jpeg|jpg|gift';
@@ -57,8 +57,8 @@ class Guru extends CI_Controller
 			'kode_guru'		 => $kode_guru,
 			'nama_guru'		 => $nama_guru,
 			'tanggal_pengajuan' => date('Y-m-d h:i:s'),
-			'tanggal_pemakaian' => $jtp,
-			'batas_pemakaian'=> $bjp,
+			'tanggal_pemakaian' => $tp,
+			'jam_pemakaian'  => $jtp,
 			'nohp_guru'		 => $nohp_guru,
 			'keterangan'     => $keterangan,
 			'foto_guru'		=> $foto,

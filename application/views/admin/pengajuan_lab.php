@@ -23,8 +23,10 @@
 						<th>Kode LAB</th>
 						<th>Nama Guru</th>
 						<td>Waktu Pengajuan</td>
-						<th>waktu pengajuan LAB</th>
-						<th>Batas Pengajuan LAB</th>
+						<td>Kode Pelajaran</td>
+						<td>Kode Kelas</td>
+						<th>Tanggal pengajuan LAB</th>
+						<th>Jam Pengajuan</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -36,8 +38,10 @@
 						<td><?php echo $pn->kode_lab ?></td>
 						<td><?php echo $pn->nama_guru ?></td>
 						<td><?php echo $pn->tanggal_pengajuan ?></td>
+						<td><?php echo $pn->kode_matapelajaran ?></td>
+						<td><?php echo $pn->kode_kelas ?></td>
 						<td><?php echo $pn->tanggal_pemakaian ?></td>
-						<td><?php echo $pn->batas_pemakaian ?></td>
+						<td><?php echo $pn->jam_pemakaian ?></td>
 						<td>
 							<div class="aksi1">
 								<a style="width:30px; height:30px" href="<?php echo base_url('admin/lihat_detail_pengajuan/').$pn->id ?>" class="btn btn-warning btn-sm"><i class="fa fa-info"></i></a>

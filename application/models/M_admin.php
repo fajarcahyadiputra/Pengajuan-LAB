@@ -92,7 +92,7 @@ class M_admin extends CI_Model
 			$result['nama_guru'] = $data->nama_guru;
 			$result['tanggal_pengajuan'] = $data->tanggal_pengajuan;
 			$result['tanggal_pemakaian'] = $data->tanggal_pemakaian;
-			$result['batas_pemakaian'] = $data->batas_pemakaian;
+			$result['jam_pemakaian'] = $data->jam_pemakaian;
 			$result['nohp_guru'] = $data->nohp_guru;
 			$result['foto_guru'] = $data->foto_guru;
 			$result['keterangan'] = $data->keterangan;

@@ -31,8 +31,8 @@
 					<th>Kode LAB</th>
 					<th>Nama Guru</th>
 					<td>Waktu Pengajuan</td>
-					<th>waktu pengajuan LAB</th>
-					<th>Batas Pengajuan LAB</th>
+					<th>Tanggal pengajuan LAB</th>
+					<th>jam Pemakaian</th>
 					<th>Action</th>
 				</tr>
 			</thead>
@@ -45,7 +45,7 @@
 					<td><?php echo $pn->nama_guru ?></td>
 					<td><?php echo $pn->tanggal_pengajuan ?></td>
 					<td><?php echo $pn->tanggal_pemakaian ?></td>
-					<td><?php echo $pn->batas_pemakaian ?></td>
+					<td><?php echo $pn->jam_pemakaian ?></td>
 					<td>
 						<button type="button" id="tombol-detail-riwayat-pengajuan" data-id="<?php echo $pn->kode_pengajuan ?>" class="btn btn-info btn-sm"><i class="fa fa-info"></i></button>
 						<button class="btn btn-danger btn-sm" data-id="<?php echo $pn->id ?>" id="tombol-hapus-riwayat-pengajuan"><i class="fa fa-trash"></i></button>

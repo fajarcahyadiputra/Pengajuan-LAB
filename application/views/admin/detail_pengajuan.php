@@ -35,8 +35,8 @@
 				<input type="text" readonly="" class="form-control" value="<?php echo $pg->tanggal_pemakaian?>">
 			</div>
 			<div class="form-group">
-				<label>Batas Pemakaian</label>
-				<input type="text" readonly="" class="form-control" value="<?php echo $pg->batas_pemakaian ?>">
+				<label>Jam Pemakaian</label>
+				<input type="text" readonly="" class="form-control" value="<?php echo $pg->jam_pemakaian ?>">
 			</div>
 			<div class="form-group">
 				<label>Kode Kelas</label>

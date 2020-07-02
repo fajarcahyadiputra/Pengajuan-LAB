@@ -366,7 +366,7 @@ class Admin extends CI_Controller
 			$result['kode_pengajuan'] = $dt->kode_pengajuan;
 			$result['tanggal_pengajuan'] = $dt->tanggal_pengajuan;
 			$result['tanggal_pemakaian'] = $dt->tanggal_pemakaian;
-			$result['batas_pemakaian'] = $dt->batas_pemakaian;
+			$result['jam_pemakaian'] = $dt->jam_pemakaian;
 			$result['nohp_guru'] = $dt->nohp_guru;
 			$result['foto_guru'] = $dt->foto_guru;
 			$result['keterangan'] = $dt->keterangan;
@@ -406,7 +406,7 @@ class Admin extends CI_Controller
 		$ng =$this->input->post('nama_guru');
 		$tp =$this->input->post('tanggal_pengajuan');
 		$tpem =$this->input->post('tanggal_pemakaian');
-		$bp =$this->input->post('batas_pemakaian');
+		$jp =$this->input->post('jam_pemakaian');
 		$nohp =$this->input->post('no_hp');
 		$ke =$this->input->post('keterangan');
 
@@ -423,7 +423,7 @@ class Admin extends CI_Controller
 			'nama_guru'     	 => $ng,
 			'tanggal_pengajuan'	 => $tp,
 			'tanggal_pemakaian'  => $tpem,
-			'batas_pemakaian' 	 => $bp,
+			'jam_pemakaian' 	 => $jp,
 			'nohp_guru'	 		 => $nohp,
 			'keterangan' 		 => $ke
 		];
@@ -459,7 +459,7 @@ class Admin extends CI_Controller
 			$result['nama_guru'] = $isi->nama_guru;
 			$result['tanggal_pengajuan'] = $isi->tanggal_pengajuan;
 			$result['tanggal_pemakaian'] = $isi->tanggal_pemakaian;
-			$result['batas_pemakaian'] = $isi->batas_pemakaian;
+			$result['jam_pemakaian'] = $isi->jam_pemakaian;
 			$result['nohp_guru'] = $isi->nohp_guru;
 			$result['kode_kelas'] = $isi->kode_kelas;
 			$result['kode_matapelajaran'] = $isi->kode_matapelajaran;
@@ -646,11 +646,14 @@ class Admin extends CI_Controller
 
 	private function riwayat_pengajuan_sort_post() {
 		if($_SERVER['REQUEST_METHOD'] == "POST") {
+			$awal = $this->input->post('awal');
+			$akhir = $this->input->post('akhir');
 			$data['riwayat'] = $this->db
-											->where(["tanggal_pengajuan >= " => $this->input->post('awal')])
-											->where(["tanggal_pengajuan <= " => $this->input->post('akhir')])
+											->where(["tanggal_pengajuan >= " => $awal])
+											->where(["tanggal_pengajuan <= " => $akhir])
 											->where(["approve" => "setuju"])
 											->order_by("id", "desc")->get("tb_riwayatpengajuan")->result();
+		    $data['tanggal'] = $awal .' s/d '. $akhir;
 			
 			$this->load->library('pdf');
 			$this->pdf->filename = 'laporan_riwayat.pdf';

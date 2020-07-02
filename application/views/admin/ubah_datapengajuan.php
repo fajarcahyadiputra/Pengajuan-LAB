@@ -3,7 +3,7 @@
 	redirect('auth');
 }else{ ?>
 	<div class="container-fluid">
-	<a class="btn btn-info mb-2" href="<?php echo base_url('admin/request_lab') ?>">Back</a>
+<!-- 	<a class="btn btn-info mb-2" href="<?php echo base_url('admin/request_lab') ?>">Back</a> -->
 	<hr>
 	<form action="<?php echo base_url('admin/edit_datapengajuan') ?>" method="post">
 	<div class="form-group">
@@ -32,8 +32,8 @@
 	<input type="text" name="tanggal_pemakaian" id="tanggal_pemakaian" class="form-control" value="<?php echo $tanggal_pemakaian ?>">
 	</div>
 	<div class="form-group">
-	<label for="batas_pemakaian">Batas Pemakaian</label>
-	<input type="text" name="batas_pemakaian" id="batas_pemakaian" class="form-control" value="<?php echo $batas_pemakaian ?>">
+	<label for="jam_pemakaian">Jam Pemakaian</label>
+	<input type="text" name="jam_pemakaian" id="jam_pemakaian" class="form-control" value="<?php echo $jam_pemakaian ?>">
 	</div>
 	<div class="form-group">
 	<label for="no_hp">Nomer HP</label>

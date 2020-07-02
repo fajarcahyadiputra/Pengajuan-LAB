@@ -63,16 +63,16 @@
     <!-- akhir jumbotron -->
 
     <!-- portfolio -->
-    <div class="container">
+<!--     <div class="container">
       <div class="row">
         <div class="col-sm-12 text-center">
           <h2>Daftar Jam/Lab Yang sudah di booking</h2>
           <hr>
         </div>
-      </div>
+      </div> -->
 
       <!-- daftar lab -->
-      <div class="row">
+<!--       <div class="row">
         <?php foreach($booking as $lb ) :  ?>
           <div class="col-sm-2">
            <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
@@ -85,10 +85,10 @@
       </div>
     <?php endforeach ?>
   </div>
-</div>
+</div> -->
 
 
-<div class="container">
+<div class="container" style="margin-bottom: 20px;">
   <div class="row">
     <div class="col-sm-12 text-center">
       <h2>Daftar LAB Yang Tersedia</h2>
@@ -106,9 +106,7 @@
             <div style="background-color: lightgrey; width : 100%; margin: auto; margin-top: 10px">
               <table class="table">
                <tr>
-                <td>Nama Lab<td>
-                  <td>:</td>
-                  <td><?php echo $lb->nama_lab ?></td>
+                  <td style="text-align: center"><?php echo $lb->nama_lab ?></td>
                 </tr>	
               </table>
             </div>
@@ -123,7 +121,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" style="margin-top: 70px">
   <div class="row">
     <div class="col-sm-12 text-center">
       <h2>Daftar Pengajuan Yang Sudah Di approve</h2>
@@ -156,7 +154,7 @@
               <td><?php echo $pn->nama_guru ?></td>
               <td><?php echo $pn->tanggal_pengajuan ?></td>
               <td><?php echo $pn->tanggal_pemakaian ?></td>
-              <td><?php echo $pn->batas_pemakaian ?></td>
+              <td><?php echo $pn->jam_pemakaian ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>
@@ -239,16 +237,16 @@
              <div class="form-group">
              <label for="jam_pemakaian">Jam Pemakaian</label>
              <select name="jam_pemakaian"  class="form-control">
-             <?php for($i=1; $i <= 24; $i++): ?>
-              <option value="<?php echo $i ?>"><?php echo 'Jam '.$i ?></option>
+             <?php for($i=1; $i <= 9; $i++): ?>
+              <option value="<?php echo $i ?>"><?php echo $i ?></option>
              <?php endfor; ?>
              </select>
              </div>
              <div class="form-group">
              <label for="sampai_jam">Sampai Jam</label>
              <select name="sampai_jam"  class="form-control">
-             <?php for($i=1; $i <= 24; $i++): ?>
-               <option value="<?php echo $i ?>"><?php echo 'Jam '.$i ?></option>
+             <?php for($i=1; $i <= 9; $i++): ?>
+               <option value="<?php echo $i ?>"><?php echo $i ?></option>
              <?php endfor; ?>
              </select>
              </div>
