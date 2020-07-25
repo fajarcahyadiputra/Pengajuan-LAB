@@ -138,7 +138,7 @@
             <tr>
               <th>No</th>
               <th>Kode Pengajuan</th>
-              <th>Kode LAB</th>
+              <th>Nama LAB</th>
               <th>Nama Guru</th>
               <td>Waktu Pengajuan</td>
               <th>waktu pengajuan LAB</th>
@@ -146,11 +146,13 @@
             </tr>
           </thead>
           <tbody>
-            <?php $no=1;  foreach($booking as $pn) :?>
+            <?php $no=1;  foreach($booking as $pn) :
+            $lab = $this->db->get_where('tb_lab',['kode_lab' => $pn->kode_lab])->row();
+            ?>
             <tr>
               <td><?php echo $no++ ?></td>
               <td><?php echo $pn->kode_pengajuan ?></td>
-              <td><?php echo $pn->kode_lab ?></td>
+              <td><?php echo $lab->nama_lab ?></td>
               <td><?php echo $pn->nama_guru ?></td>
               <td><?php echo $pn->tanggal_pengajuan ?></td>
               <td><?php echo $pn->tanggal_pemakaian ?></td>

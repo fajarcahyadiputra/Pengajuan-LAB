@@ -23,23 +23,27 @@
 						<th>Kode LAB</th>
 						<th>Nama Guru</th>
 						<td>Waktu Pengajuan</td>
-						<td>Kode Pelajaran</td>
-						<td>Kode Kelas</td>
+						<td>Pelajaran</td>
+						<td>Kelas</td>
 						<th>Tanggal pengajuan LAB</th>
 						<th>Jam Pengajuan</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php $no=1;  foreach($pengajuan as $pn) :?>
+					<?php $no=1;  foreach($pengajuan as $pn):
+					$pelajaran = $this->db->get_where('tb_pelajaran', ['kode_matapelajaran' => $pn->kode_matapelajaran	])->row();
+					$kelas  = $this->db->get_where('tb_kelas',['kode_kelas' => $pn->kode_kelas])->row();
+
+					?>
 					<tr>
 						<td><?php echo $no++ ?></td>
 						<td><?php echo $pn->kode_pengajuan ?></td>
 						<td><?php echo $pn->kode_lab ?></td>
 						<td><?php echo $pn->nama_guru ?></td>
 						<td><?php echo $pn->tanggal_pengajuan ?></td>
-						<td><?php echo $pn->kode_matapelajaran ?></td>
-						<td><?php echo $pn->kode_kelas ?></td>
+						<td><?php echo $pelajaran->mata_pelajaran ?></td>
+						<td><?php echo $kelas->nama_kelas ?></td>
 						<td><?php echo $pn->tanggal_pemakaian ?></td>
 						<td><?php echo $pn->jam_pemakaian ?></td>
 						<td>
