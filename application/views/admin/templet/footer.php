@@ -478,19 +478,19 @@
             <td>${hasil.tanggal_pemakaian}</td>
             </tr>
             <tr>
-            <th>Batas Pemakaian</th>
+            <th>Jam Pemakaian</th>
             <td>:</td>
-            <td>${hasil.batas_pemakaian}</td>
+            <td>${hasil.jam_pemakaian}</td>
             </tr>
 						<tr>
-            <th>Kode Kelas</th>
+            <th>Kelas</th>
             <td>:</td>
-            <td>${hasil.kode_kelas}</td>
+            <td>${hasil.kelas}</td>
 						</tr>
 						<tr>
-            <th>Kode Pelajaran</th>
+            <th>Pelajaran</th>
             <td>:</td>
-            <td>${hasil.kode_matapelajaran}</td>
+            <td>${hasil.pelajaran}</td>
             </tr>
             <tr>
             <th>NO Handphone</th>

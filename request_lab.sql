@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Jul 2020 pada 18.55
+-- Waktu pembuatan: 25 Jul 2020 pada 11.04
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
@@ -46,8 +46,9 @@ CREATE TABLE `tb_guru` (
 --
 
 INSERT INTO `tb_guru` (`id`, `kode_guru`, `nama_guru`, `username`, `email`, `password`, `apakah_aktif`, `no_hp`, `tanggal_daftar`, `foto`) VALUES
-(20, 'GR0001', 'fajar cahyadi putra', 'user', 'asep@tajh.jhduw', '23', 'aktif', '089528426482642', '0000-00-00 00:00:00', 'af3ba01deea63a460c662ca93fb6a533.PNG'),
-(21, 'GR0002', 'fajar cahyadi putra', 'admin', 'asep@tajh.jhduw', '2323', 'aktif', '089528426482642', '0000-00-00 00:00:00', 'aa75e8c97f609ac8e36a581e07630f5b.png');
+(26, 'GR0001', 'fajar', 'fajar', 'fajar@gmail.com', '123', 'aktif', '8989898', '2020-07-02 18:59:32', 'default.jpg'),
+(27, 'GR0002', 'fajar', 'fajar', 'fajar@gmail.com', '1234', 'aktif', '8989899', '2020-07-02 18:59:32', 'default.jpg'),
+(28, 'GR0003', 'fajar', 'fajar', 'fajar@gmail.com', '123456', 'aktif', '8989900', '2020-07-02 18:59:32', 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -65,7 +66,8 @@ CREATE TABLE `tb_kelas` (
 --
 
 INSERT INTO `tb_kelas` (`kode_kelas`, `nama_kelas`) VALUES
-(15, 'abc');
+(15, 'abc'),
+(16, 'ddd');
 
 -- --------------------------------------------------------
 
@@ -88,7 +90,7 @@ CREATE TABLE `tb_lab` (
 --
 
 INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`, `foto`, `keterangan`) VALUES
-(0, 'LAB0001', 'lab komputer', 'ac, tv, banyak', 'aktif', '9772fd66cadf3fa9f405abb6343e5ad2.png', '4444');
+(1, 'LAB0001', 'lab komputer', 'ac, tv, banyak', 'aktif', '9772fd66cadf3fa9f405abb6343e5ad2.png', '4444');
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,7 @@ INSERT INTO `tb_lab` (`id`, `kode_lab`, `nama_lab`, `fasilitas`, `apakah_aktif`,
 --
 
 CREATE TABLE `tb_pelajaran` (
-  `kode_matapelajaran` varchar(50) NOT NULL,
+  `kode_matapelajaran` int(8) NOT NULL,
   `mata_pelajaran` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -106,7 +108,8 @@ CREATE TABLE `tb_pelajaran` (
 --
 
 INSERT INTO `tb_pelajaran` (`kode_matapelajaran`, `mata_pelajaran`) VALUES
-('061358', 'indo');
+(1, 'indo'),
+(104749, 'mtk');
 
 -- --------------------------------------------------------
 
@@ -136,7 +139,7 @@ CREATE TABLE `tb_pengajuan` (
 --
 
 INSERT INTO `tb_pengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `jam_pemakaian`, `kode_matapelajaran`, `kode_kelas`, `nohp_guru`, `foto_guru`, `keterangan`, `approve`) VALUES
-(94, 'PGN0001', 'LAB0001', 'GR0001', 'fajar cahyadi putra', '2020-07-02 11:45:00', '2020-07-09', '3-8', 61358, 15, '089528426482642', 'af3ba01deea63a460c662ca93fb6a533.PNG', 'ok', 'setuju');
+(96, 'PGN0001', 'LAB0001', 'GR0002', 'fajar', '2020-07-25 03:49:03', '2020-07-07', '1-3', 1, 16, '8989899', 'default.jpg', 'ok', 'setuju');
 
 -- --------------------------------------------------------
 
@@ -166,8 +169,7 @@ CREATE TABLE `tb_riwayatpengajuan` (
 --
 
 INSERT INTO `tb_riwayatpengajuan` (`id`, `kode_pengajuan`, `kode_lab`, `kode_guru`, `nama_guru`, `tanggal_pengajuan`, `tanggal_pemakaian`, `jam_pemakaian`, `kode_matapelajaran`, `kode_kelas`, `nohp_guru`, `foto_guru`, `keterangan`, `approve`) VALUES
-(65, 'PGN0001', 'LAB0001', 'GR0001', 'fajar cahyadi putra', '2020-07-02', '2020-07-14', '4-7', 61358, 15, '089528426482642', 'af3ba01deea63a460c662ca93fb6a533.PNG', 'ok', 'setuju'),
-(66, 'PGN0001', 'LAB0001', 'GR0001', 'fajar cahyadi putra', '2020-07-02', '2020-07-09', '3-8', 61358, 15, '089528426482642', 'af3ba01deea63a460c662ca93fb6a533.PNG', 'ok', 'setuju');
+(68, 'PGN0001', 'LAB0001', 'GR0002', 'fajar', '2020-07-25', '2020-07-07', '1-3', 1, 16, '8989899', 'default.jpg', 'ok', 'setuju');
 
 -- --------------------------------------------------------
 
@@ -214,7 +216,7 @@ ALTER TABLE `tb_kelas`
 -- Indeks untuk tabel `tb_lab`
 --
 ALTER TABLE `tb_lab`
-  ADD PRIMARY KEY (`kode_lab`) USING BTREE;
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Indeks untuk tabel `tb_pelajaran`
@@ -248,25 +250,37 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT untuk tabel `tb_guru`
 --
 ALTER TABLE `tb_guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_kelas`
 --
 ALTER TABLE `tb_kelas`
-  MODIFY `kode_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `kode_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_lab`
+--
+ALTER TABLE `tb_lab`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `tb_pelajaran`
+--
+ALTER TABLE `tb_pelajaran`
+  MODIFY `kode_matapelajaran` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104750;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pengajuan`
 --
 ALTER TABLE `tb_pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_riwayatpengajuan`
 --
 ALTER TABLE `tb_riwayatpengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`

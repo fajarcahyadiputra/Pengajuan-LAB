@@ -461,8 +461,8 @@ class Admin extends CI_Controller
 			$result['tanggal_pemakaian'] = $isi->tanggal_pemakaian;
 			$result['jam_pemakaian'] = $isi->jam_pemakaian;
 			$result['nohp_guru'] = $isi->nohp_guru;
-			$result['kode_kelas'] = $isi->kode_kelas;
-			$result['kode_matapelajaran'] = $isi->kode_matapelajaran;
+			$result['kelas'] = $this->db->get_where('tb_kelas',['kode_kelas' => $isi->kode_kelas])->row()->nama_kelas;
+			$result['pelajaran'] = $this->db->get_where('tb_pelajaran',['kode_matapelajaran' => $isi->kode_matapelajaran])->row()->mata_pelajaran;
 			$result['foto_guru'] = $isi->foto_guru;
 			$result['keterangan'] = $isi->keterangan;
 		}

@@ -143,6 +143,7 @@
               <td>Waktu Pengajuan</td>
               <th>waktu pengajuan LAB</th>
               <th>Batas Pengajuan LAB</th>
+              <th>Mata Pelajaran</th>
             </tr>
           </thead>
           <tbody>
@@ -157,6 +158,7 @@
               <td><?php echo $pn->tanggal_pengajuan ?></td>
               <td><?php echo $pn->tanggal_pemakaian ?></td>
               <td><?php echo $pn->jam_pemakaian ?></td>
+              <td><?php echo $this->db->get_where('tb_pelajaran',['kode_matapelajaran' => $pn->kode_matapelajaran])->row()->mata_pelajaran; ?></td>
             </tr>
           <?php endforeach ?>
         </tbody>

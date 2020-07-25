@@ -31,7 +31,8 @@
 					<th>Kode LAB</th>
 					<th>Nama Guru</th>
 					<td>Waktu Pengajuan</td>
-					<th>Tanggal pengajuan LAB</th>
+					<th>Tanggal pemakaian LAB</th>
+					<th>Mata Pelajaran</th>
 					<th>jam Pemakaian</th>
 					<th>Action</th>
 				</tr>
@@ -45,6 +46,7 @@
 					<td><?php echo $pn->nama_guru ?></td>
 					<td><?php echo $pn->tanggal_pengajuan ?></td>
 					<td><?php echo $pn->tanggal_pemakaian ?></td>
+					<td><?php echo $this->db->get_where('tb_pelajaran',['kode_matapelajaran' => $pn->kode_matapelajaran])->row()->mata_pelajaran; ?></td>
 					<td><?php echo $pn->jam_pemakaian ?></td>
 					<td>
 						<button type="button" id="tombol-detail-riwayat-pengajuan" data-id="<?php echo $pn->kode_pengajuan ?>" class="btn btn-info btn-sm"><i class="fa fa-info"></i></button>
